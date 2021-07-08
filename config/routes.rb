@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   scope [:api, :v1], defaults: {format: :json} do
     devise_for :users, path: '', path_names: {
       sign_in: 'login',
