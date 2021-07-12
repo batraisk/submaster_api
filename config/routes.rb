@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :domains
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   scope [:api, :v1], defaults: {format: :json} do
@@ -18,6 +19,20 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users, only: :show
+      resources :domains
+
+      resources :subscribe_pages, only: [:index, :create]
+      # resources :subscribe_pages, only: [:index, :edit, :create, :update, :destroy, :new] do
+      #   post :check_user_name, on: :collection
+      # end
     end
   end
+
+  get "/pages/*url/success", :controller => 'pages', :action => 'success'
+  get "/pages/*url/welcome", :controller => 'pages', :action => 'welcome'
+  get "/pages/*url/enter_login", :controller => 'pages', :action => 'enter_login'
+  get "/pages/*url/check", :controller => 'pages', :action => 'check'
+  get "/pages/*url/check_login_follow", :controller => 'pages', :action => 'check_login_follow'
+  get "/pages/*url", :controller => 'pages', :action => 'show'
+  post "/pages/*url", :controller => 'pages', :action => 'create'
 end

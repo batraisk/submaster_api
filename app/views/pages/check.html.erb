@@ -1,0 +1,16 @@
+<div class="page-container">
+  <div class="content">
+    <div class="inner">
+      <a href="https://www.instagram.com/<%= @page.instagram_login %>">Подписаться</a>
+      <form action="/pages/{{url}}/check_login" method="POST">
+        <p>Подпишитесь на мой инстаграм и ссылка для скачивания материала станет доступна</p>
+      </form>
+      <button onclick="check('<%= @page.url %>')">Я подписан</button>
+    </div>
+  </div>
+  <div class="background">
+
+  </div>
+</div>
+<%= csrf_meta_tags %>
+<%= javascript_pack_tag 'pages' %>

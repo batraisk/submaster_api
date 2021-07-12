@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_08_080326) do
+ActiveRecord::Schema.define(version: 2021_07_08_231403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,12 +41,50 @@ ActiveRecord::Schema.define(version: 2021_07_08_080326) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "domains", force: :cascade do |t|
+    t.string "url"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_domains_on_user_id"
+  end
+
   create_table "jwt_denylist", force: :cascade do |t|
     t.string "jti", null: false
     t.datetime "exp", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["jti"], name: "index_jwt_denylist_on_jti"
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.string "page_name"
+    t.string "url"
+    t.string "instagram_login"
+    t.string "facebook_pixel_id"
+    t.string "facebook_server_side_token"
+    t.string "yandex_metrika"
+    t.string "welcome_title"
+    t.text "welcome_description"
+    t.string "welcome_button_text"
+    t.integer "timer_time"
+    t.boolean "timer_enable"
+    t.string "timer_text"
+    t.string "layout"
+    t.string "theme"
+    t.string "success_title"
+    t.text "success_description"
+    t.string "success_button_text"
+    t.string "download_link"
+    t.string "out_of_stock_title"
+    t.text "out_of_stock_description"
+    t.bigint "user_id"
+    t.bigint "domain_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "welcome_content"
+    t.index ["domain_id"], name: "index_pages_on_domain_id"
+    t.index ["user_id"], name: "index_pages_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -73,4 +111,7 @@ ActiveRecord::Schema.define(version: 2021_07_08_080326) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "domains", "users"
+  add_foreign_key "pages", "domains"
+  add_foreign_key "pages", "users"
 end

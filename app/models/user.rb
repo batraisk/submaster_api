@@ -35,4 +35,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :trackable, :confirmable, :jwt_authenticatable,
          jwt_revocation_strategy: JwtDenylist
+
+  has_many :domains
+  has_many :pages
 end

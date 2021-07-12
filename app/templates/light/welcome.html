@@ -1,0 +1,11 @@
+<h1>{{title}}</h1>
+<form action="/pages/{{link}}" method="POST">
+  <input type="text" hidden id="csrf_token" name="csrf_token" value="{{csrf_token}}">
+  <div class="input-control">
+    <label for="name">
+      <input type="text" id="name" name="name">
+      никнейм
+    </label>
+  </div>
+  <button type="submit" id="action-button">click</button>
+</form>
