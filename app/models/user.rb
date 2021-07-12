@@ -37,5 +37,5 @@ class User < ApplicationRecord
          jwt_revocation_strategy: JwtDenylist
 
   has_many :domains
-  has_many :pages
+  has_many :pages, dependent: :delete_all
 end
