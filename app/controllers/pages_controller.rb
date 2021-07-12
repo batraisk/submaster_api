@@ -41,7 +41,8 @@ class PagesController < ApplicationController
 
   def check_login_follow
     @page = Page.find_by_url(params[:url])
-    scrapper = Instagram::ScrapperService.new('batraisk', '18052005ziga!')
+    creds = InstagramCredential.find(InstagramCredential.pluck(:id).sample)
+    scrapper = Instagram::ScrapperService.new(creds.login, creds.password)
     scrapper.authenticate_with_login
     is_follow = scrapper.find_user_in_followers(@page.instagram_login, params[:name])
     render json: {is_follow: is_follow}, status: :ok
