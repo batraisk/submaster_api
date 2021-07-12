@@ -2,36 +2,25 @@ class PagesController < ApplicationController
   skip_before_action :verify_authenticity_token, :only => [:create]
 
   def show
-
     @page = Page.find_by_url(full_url)
     @content = @page.welcome_content
     @form_authenticity_token = form_authenticity_token
-    redirect_to controller: 'pages', action: 'welcome', url: "#{params[:url]}.#{params[:format]}"
+    url = params[:format] ? "#{params[:url]}.#{params[:format]}" : params[:url]
+    redirect_to controller: 'pages', action: 'welcome', url: url
   end
 
   def welcome
     @page = Page.find_by_url(params[:url])
-    # @welcome_content = Pages::CreatePageService.new(@page).call
-    # @page = Page.find_by_url(params[:url])
-    # @content = @page.welcome_content
     @form_authenticity_token = form_authenticity_token
   end
 
   def enter_login
-    # byebug
     @page = Page.find_by_url(params[:url])
-    # @welcome_content = Pages::CreatePageService.new(@page).call
-    # @page = Page.find_by_url(params[:url])
-    # @content = @page.welcome_content
     @form_authenticity_token = form_authenticity_token
   end
 
   def check
-    # byebug
     @page = Page.find_by_url(params[:url])
-    # @welcome_content = Pages::CreatePageService.new(@page).call
-    # @page = Page.find_by_url(params[:url])
-    # @content = @page.welcome_content
     @form_authenticity_token = form_authenticity_token
   end
 

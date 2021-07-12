@@ -1,6 +1,12 @@
 .page-container {
   display: flex;
 
+  .background {
+    background-position-y: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+  }
+
   .content {
     width: 50%;
     min-height: 100vh;

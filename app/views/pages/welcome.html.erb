@@ -16,7 +16,8 @@
 
     </div>
   </div>
-  <div class="background">
+<!--  <div class="background" style="background: '<%#= request.base_url + url_for(@page.background) %>'">-->
+  <div class="background" style="background: url('<%= url_for(@page.background) %>')">
 
   </div>
 </div>

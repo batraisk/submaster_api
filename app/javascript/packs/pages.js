@@ -1,8 +1,3 @@
-// document.getElementById('action-buttonn').addEventListener('click', (event)=> {
-//
-//   console.log('click', event)
-// })
-
 save = () => {
   const value = document.getElementById('name').value;
   localStorage.setItem('name', value);

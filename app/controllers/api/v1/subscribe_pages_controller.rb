@@ -2,7 +2,7 @@ class Api::V1::SubscribePagesController < ApplicationController
   skip_before_action :verify_authenticity_token, :only => :create
 
   def index
-    @user_pages = current_user.pages
+    @user_pages = current_user.pages.order(created_at: :desc)
 
     render json: @user_pages, status: :ok
   end
@@ -41,7 +41,8 @@ class Api::V1::SubscribePagesController < ApplicationController
         :welcome_title,
         :yandex_metrika,
         :domain_id,
-        :facebook_pixel_id
+        :facebook_pixel_id,
+        :background
       )
     end
 end

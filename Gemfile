@@ -29,6 +29,7 @@ gem 'rack-cors'
 gem 'oj'
 gem 'active_model_serializers', '~> 0.10.12'
 gem 'activeadmin'
+gem 'image_processing', '~> 1.2'
 
 gem "mechanize"
 
