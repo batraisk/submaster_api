@@ -36,7 +36,7 @@ class Instagram::ScrapperService
     login_data = {'username': @username, 'password': @password}
 
     @agent.post(Scrapper::LOGIN_URL, login_data, headers) do |page|
-      # puts page
+      puts page
     end
   end
 
