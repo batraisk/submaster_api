@@ -43,6 +43,7 @@ class Page < ApplicationRecord
   belongs_to :user
   before_save :generate_content
   has_one_attached :background
+  has_many :logins
 
   private
 

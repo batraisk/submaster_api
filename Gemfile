@@ -31,6 +31,10 @@ gem 'active_model_serializers', '~> 0.10.12'
 gem 'activeadmin'
 gem 'image_processing', '~> 1.2'
 
+gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
+gem 'axlsx_rails'
+gem 'kaminari'
+
 gem "mechanize"
 
 # Reduces boot times through caching; required in config/boot.rb

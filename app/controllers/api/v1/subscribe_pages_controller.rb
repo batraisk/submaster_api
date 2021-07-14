@@ -5,6 +5,12 @@ class Api::V1::SubscribePagesController < ApplicationController
     @user_pages = current_user.pages.order(created_at: :desc)
 
     render json: @user_pages, status: :ok
+    end
+
+  def show
+    @user_page = current_user.pages.find(params[:id])
+
+    render json: @user_page, status: :ok
   end
 
   def create

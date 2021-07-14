@@ -1,0 +1,10 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Logins") do |sheet|
+  # Create the header row
+  sheet.add_row ["Name", "Date", "Status"]
+  # Create entries for each item
+  @logins.each do |item|
+    sheet.add_row [item.name, item.created_at.strftime('%F'), item.status]
+  end
+end
