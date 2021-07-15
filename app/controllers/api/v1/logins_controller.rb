@@ -4,7 +4,7 @@ class Api::V1::LoginsController < ApplicationController
   def index
     scope = @page.logins.page(params[:page]).per(params[:page_size])
     @logins = Queries::LoginsQuery.new(sort_params, filters_params).call(scope)
-    render json: { data: @logins,
+    render json: { data: ActiveModel::Serializer::CollectionSerializer.new(@logins, serializer: LoginSerializer),
                    total_pages: scope.total_pages,
                    total_count: scope.total_count
     }
@@ -21,15 +21,6 @@ class Api::V1::LoginsController < ApplicationController
   private
     def set_page
       @page = Page.find_by(id: params[:subscribe_page_id])
-    end
-
-    def order
-      case params[:order]
-      when 'name'
-        "status = 'fundraising' DESC, (trend_index) DESC"
-      when 'newest'
-        "status = 'fundraising' DESC, created_at DESC"
-      end
     end
 
     def login_params

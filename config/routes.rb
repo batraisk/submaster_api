@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: :show
       resources :domains
-      resources :subscribe_pages, only: [:index, :show, :create] do
+      resources :subscribe_pages do
         resources :logins do
           get :report, on: :collection
         end

@@ -1,5 +1,5 @@
 class Api::V1::SubscribePagesController < ApplicationController
-  skip_before_action :verify_authenticity_token, :only => :create
+  skip_before_action :verify_authenticity_token, :only => [:create, :update]
 
   def index
     @user_pages = current_user.pages.order(created_at: :desc)
@@ -13,8 +13,17 @@ class Api::V1::SubscribePagesController < ApplicationController
     render json: @user_page, status: :ok
   end
 
-  def create
+  def update
+    @page = current_user.pages.find(params[:id])
     # byebug
+    if @page.update(page_params)
+      render json: @page, status: :ok
+    else
+      render json: @page.errors, status: :unprocessable_entity
+    end
+  end
+
+  def create
     @page = current_user.pages.new(page_params)
     if @page.save
       render json: @page, status: :ok

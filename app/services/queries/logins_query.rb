@@ -11,7 +11,7 @@ module Queries
     def call(scope = Login.all)
       @scope = scope
       if @sort
-        sort_params = sort.to_h.map { |key, value| "#{key} #{value}" }.join(', ')
+        sort_params = @sort.to_h.map { |key, value| "#{key} #{value}" }.join(', ')
         @scope = scope.order(sort_params)
       end
       if @params
