@@ -1,23 +1,25 @@
 # == Schema Information
 #
-# Table name: domains
+# Table name: user_infos
 #
 #  id         :bigint           not null, primary key
-#  status     :string
-#  url        :string
+#  locale     :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :bigint
 #
 # Indexes
 #
-#  index_domains_on_user_id  (user_id)
+#  index_user_infos_on_user_id  (user_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (user_id => users.id)
 #
-class Domain < ApplicationRecord
-  belongs_to :user
-  has_many :pages
+require "test_helper"
+
+class UserInfoTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end

@@ -38,4 +38,13 @@ class User < ApplicationRecord
 
   has_many :domains
   has_many :pages, dependent: :delete_all
+  has_one :user_info
+
+  after_create :create_info
+
+  private
+
+    def create_info
+      self.create_user_info!
+    end
 end

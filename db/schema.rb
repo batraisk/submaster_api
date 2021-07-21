@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_13_104217) do
+ActiveRecord::Schema.define(version: 2021_07_21_102532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_104217) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "status"
     t.index ["user_id"], name: "index_domains_on_user_id"
   end
 
@@ -127,8 +128,17 @@ ActiveRecord::Schema.define(version: 2021_07_13_104217) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "welcome_content"
+    t.string "status", default: "inactive"
     t.index ["domain_id"], name: "index_pages_on_domain_id"
     t.index ["user_id"], name: "index_pages_on_user_id"
+  end
+
+  create_table "user_infos", force: :cascade do |t|
+    t.string "locale"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_infos_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -155,10 +165,26 @@ ActiveRecord::Schema.define(version: 2021_07_13_104217) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "utm_tags", force: :cascade do |t|
+    t.string "source"
+    t.string "medium"
+    t.string "campaign"
+    t.string "content"
+    t.integer "clicks"
+    t.integer "subscriptions"
+    t.integer "conversion"
+    t.bigint "page_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["page_id"], name: "index_utm_tags_on_page_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "domains", "users"
   add_foreign_key "logins", "pages"
   add_foreign_key "pages", "domains"
   add_foreign_key "pages", "users"
+  add_foreign_key "user_infos", "users"
+  add_foreign_key "utm_tags", "pages"
 end

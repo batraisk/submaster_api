@@ -3,6 +3,7 @@
 # Table name: domains
 #
 #  id         :bigint           not null, primary key
+#  status     :string
 #  url        :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -17,5 +18,9 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class DomainSerializer < ActiveModel::Serializer
-  attributes :id, :url
+  attributes :id, :url, :pages, :status
+
+  def pages
+    ActiveModel::Serializer::CollectionSerializer.new(object.pages, serializer: ShortPageSerializer)
+  end
 end

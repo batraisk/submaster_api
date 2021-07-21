@@ -1,5 +1,5 @@
 class Api::V1::SubscribePagesController < ApplicationController
-  skip_before_action :verify_authenticity_token, :only => [:create, :update]
+  skip_before_action :verify_authenticity_token, :only => [:create, :update, :destroy]
 
   def index
     @user_pages = current_user.pages.order(created_at: :desc)
@@ -32,6 +32,11 @@ class Api::V1::SubscribePagesController < ApplicationController
     end
   end
 
+  def destroy
+    @page = current_user.pages.find(params[:id]).destroy
+    render json: { notice: 'Page was deleted' }, status: :ok
+  end
+
   private
 
     def page_params
@@ -57,7 +62,8 @@ class Api::V1::SubscribePagesController < ApplicationController
         :yandex_metrika,
         :domain_id,
         :facebook_pixel_id,
-        :background
+        :background,
+        :status
       )
     end
 end

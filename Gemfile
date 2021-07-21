@@ -36,6 +36,7 @@ gem 'axlsx_rails'
 gem 'kaminari'
 
 gem "mechanize"
+gem 'enumerize'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -57,6 +58,7 @@ group :development do
   gem 'annotate'
   gem 'bullet'
   gem 'letter_opener'
+  gem 'awesome_print'
 end
 
 group :test do

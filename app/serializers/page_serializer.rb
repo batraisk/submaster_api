@@ -10,6 +10,7 @@
 #  out_of_stock_description   :text
 #  out_of_stock_title         :string
 #  page_name                  :string
+#  status                     :string           default("inactive")
 #  success_button_text        :string
 #  success_description        :text
 #  success_title              :string
@@ -50,7 +51,7 @@ class PageSerializer < ActiveModel::Serializer
              :timer_enable, :timer_text,
              :timer_time, :welcome_button_text,
              :welcome_description, :welcome_title,
-             :yandex_metrika, :facebook_pixel_id
+             :yandex_metrika, :facebook_pixel_id, :status
 
   def background
     return unless object.background.attached?

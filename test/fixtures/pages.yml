@@ -10,6 +10,7 @@
 #  out_of_stock_description   :text
 #  out_of_stock_title         :string
 #  page_name                  :string
+#  status                     :string           default("inactive")
 #  success_button_text        :string
 #  success_description        :text
 #  success_title              :string

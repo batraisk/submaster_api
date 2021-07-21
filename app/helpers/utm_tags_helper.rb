@@ -1,0 +1,2 @@
+module UtmTagsHelper
+end

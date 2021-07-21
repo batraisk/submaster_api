@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :utm_tags
   resources :domains
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -21,9 +22,13 @@ Rails.application.routes.draw do
       resources :users, only: :show
       resources :domains
       resources :subscribe_pages do
+        resources :utm_tags
         resources :logins do
           get :report, on: :collection
         end
+      end
+      resource :user_info do
+        post :set_locale
       end
       # resources :subscribe_pages, only: [:index, :edit, :create, :update, :destroy, :new] do
       #   post :check_user_name, on: :collection
