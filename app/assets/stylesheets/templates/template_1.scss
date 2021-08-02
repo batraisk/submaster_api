@@ -1,0 +1,30 @@
+.template-1 {
+  background-position-y: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+
+  .timer {
+    margin-top: 50px;
+
+    .bar-container {
+      display: flex;
+      font-size: 8px;
+      line-height: 14px;
+
+      .progress-bar {
+        border-radius: 125px;
+        height: 10px;
+        width: 100%;
+        //background: linear-gradient(90deg, #2F54EB 55.12%, #ADC6FF 100%);
+        margin-top: 7px;
+      }
+
+      .time {
+        margin-left: 9px;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 22px;
+      }
+    }
+  }
+}

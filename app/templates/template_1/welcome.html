@@ -1,0 +1,31 @@
+<div class="template-1 template-container" style="background: url({{image}})">
+  <div class="row">
+    <div class="col col-6">
+      <div class="content-container">
+        <h1>{{welcome_title}}</h1>
+        <p>{{welcome_description}}</p>
+        <div class="timer">
+          <h4>{{timer_text}}</h4>
+          <div class="bar-container">
+            <div
+              class="progress-bar"
+              style="background: linear-gradient(90deg, #2F54EB 55.12%, #ADC6FF 100%)"
+            ></div>
+            <span class="time">1:00</span>
+          </div>
+        </div>
+        <form action="/pages/{{url}}/enter_login">
+          <button type="submit" class="button">
+            {{welcome_button_text}}
+          </button>
+        </form>
+
+        <div class="policy">
+          <div class="created-by">Created by <a href="">Submaster</a></div>
+          <div class="privacy-policy-container"><a href="" class="privacy-policy">Privacy policy</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="col lg-6"></div>
+  </div>
+</div>

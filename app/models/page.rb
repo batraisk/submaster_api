@@ -51,6 +51,7 @@ class Page < ApplicationRecord
   private
 
     def generate_content
-      self.welcome_content = Pages::CreatePageService.new(self).call
+
+      self.welcome_content = Pages::CreatePageService.new(self, self.layout).call
     end
 end

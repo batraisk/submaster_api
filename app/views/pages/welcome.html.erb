@@ -1,40 +1,69 @@
-<%# @welcome_content.sub! "{{csrf_token}}", @form_authenticity_token %>
-<%#= @welcome_content.html_safe %>
-<%#= csrf_meta_tags %>
-<!--<div class="red">-->
-<!--  red-->
-<!--  <button onclick="click()" id="action-buttonn">action-button</button>-->
-<!--</div>-->
-<div class="page-container">
-  <div class="content">
-    <div class="inner">
-      <form action="/pages/<%= @page.url %>/enter_login">
-        <h1><%= @page.welcome_title %></h1>
-        <p><%= @page.welcome_description %></p>
-        <button type="submit"><%= @page.welcome_button_text %></button>
-      </form>
-
-    </div>
-  </div>
-<!--  <div class="background" style="background: '<%#= request.base_url + url_for(@page.background) %>'">-->
-  <div class="background" style="background: url('<%= url_for(@page.background) %>')">
-
-  </div>
-</div>
-
-<!--<h1></h1>-->
-<!--<form action="/pages/{{url}}" method="POST">-->
-<!--  <input type="text" hidden id="csrf_token" name="csrf_token" value="{{csrf_token}}">-->
-<!--  <div class="input-control">-->
-<!--    <label for="name">-->
-<!--      <input type="text" id="name" name="name">-->
-<!--      никнейм-->
-<!--    </label>-->
-<!--  </div>-->
-<!--  <button type="submit" id="action-button">click</button>-->
-<!--</form>-->
-
-
-
+<%# @content.sub! "{{csrf_token}}", @form_authenticity_token %>
+<% @content.sub! '{{image}}', rails_blob_path(@page.background, only_path: true) if @page.background.attached?%>
+<%= @content.html_safe %>
+<%= csrf_meta_tags %>
 
 <%= javascript_pack_tag 'pages' %>
+
+<!--<div class="template-1 template-container" style="background: url('<%#= url_for(@page.background) %>')">-->
+<!--<div class="template-1 template-container">-->
+<!--  <div class="row">-->
+<!--    <div class="col col-6">-->
+<!--      <div class="content-container">-->
+<!--        <h1>Title</h1>-->
+<!--        <p>Description description description-->
+<!--description description-->
+<!--description description description</p>-->
+<!--        <div class="timer">-->
+<!--          <h4>Timer text</h4>-->
+<!--          <div class="bar-container">-->
+<!--            <div-->
+<!--              class="progress-bar"-->
+<!--              style="background: linear-gradient(90deg, #2F54EB 55.12%, #ADC6FF 100%)"-->
+<!--            ></div>-->
+<!--            <span class="time">1:00</span>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <button class="button">-->
+<!--          Button Title-->
+<!--        </button>-->
+
+<!--        <div class="policy">-->
+<!--          <div class="created-by">Created by <a href="">Submaster</a></div>-->
+<!--          <div class="privacy-policy-container"><a href="" class="privacy-policy">Privacy policy</a></div>-->
+<!--          <div>-->
+<!--            Created by <a href="">Submaster</a>-->
+<!--          </div>-->
+<!--          <div>Privacy policy</div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="col lg-6">-->
+
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<div class="page-container">-->
+<!--  <div class="content">-->
+<!--    <div class="inner">-->
+<!--      <form action="/pages/<%#= @page.url %>/enter_login">-->
+<!--        <h1><%#= @page.welcome_title %></h1>-->
+<!--        <p><%#= @page.welcome_description %></p>-->
+<!--        <button type="submit"><%#= @page.welcome_button_text %></button>-->
+<!--      </form>-->
+
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="background" style="background: '<%#= request.base_url + url_for(@page.background) %>'">-->
+<!--  <div class="background" style="background: url('<%#= url_for(@page.background) %>')">-->
+
+<!--  </div>-->
+<!--</div>-->
+
+
+
+
+
+<%#= javascript_pack_tag 'pages' %>

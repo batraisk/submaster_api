@@ -13,12 +13,14 @@ module Queries
         sort_params = []
         @sort.to_h.each do |key, value|
           if key.eql?('pages')
+            @scope = @scope.includes(:pages)
+            sort_params << "pages.page_name #{value}"
           else
             sort_params << "#{key} #{value}"  #.join(', ')
           end
         end
         str = sort_params.join(', ')
-        @scope = scope.order(str)
+        @scope = @scope.order(str)
       else
         @scope = scope.order(created_at: :desc)
       end

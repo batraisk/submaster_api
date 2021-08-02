@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: :show
       resources :domains
+      resource :account
       resources :subscribe_pages do
         resources :utm_tags
         resources :logins do
