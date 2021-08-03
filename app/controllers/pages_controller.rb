@@ -36,7 +36,7 @@ class PagesController < ApplicationController
   end
 
   def success
-    @page = Page.find_by_link(params[:link])
+    @page = Page.find_by_url(params[:link])
     render template: "pages/success"
   end
 

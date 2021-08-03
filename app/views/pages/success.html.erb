@@ -1,1 +1,23 @@
-<h1>success</h1>
+<div class="page-container success-page">
+  <div
+    class="fanfare mobile"
+    style="background: center url(<%=image_url('success.svg') %>); transform: scaleX(-1);"
+  ></div>
+  <img class="fanfare-horizontal" style="transform: scaleX(-1);" src="<%=image_url('success-horizontal.svg') %>" alt="">
+  <img class="fanfare" src="<%=image_url('success.svg') %>" alt="">
+
+  <div class="content-container">
+    <div><%=image_tag('check-circle.svg') %></div>
+<!--    <div class="icon-success"></div>-->
+    <h1>Title</h1>
+    <p>Description description description description description
+      description description description</p>
+    <button class="btn-primary">Button Text</button>
+  </div>
+  <div
+    class="fanfare mobile"
+    style="background: center url(<%=image_url('success.svg') %>);"
+  ></div>
+  <img class="fanfare" style="transform: scaleY(-1);" src="<%=image_url('success.svg') %>" alt="">
+  <img class="fanfare-horizontal" src="<%=image_url('success-horizontal.svg') %>" alt="">
+</div>

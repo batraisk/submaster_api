@@ -1,20 +1,66 @@
-<%= javascript_pack_tag 'pages' %>
 <div class="page-container">
-  <div class="content">
-    <div class="inner">
-      <form action="/pages/<%= @page.url %>/check" method="get">
-        <h1>Введите ваш логин Instagram, чтобы открыть доступ</h1>
-        <p><input type="text" id="name" name="name" placeholder="my_login"></p>
-        <button onclick="save()"><%= @page.welcome_button_text %></button>
-      </form>
+  <div class="content-container">
+    <h3>Enter your Instagram username to get access</h3>
+    <p>You can find your username on your profile page</p>
+
+    <div class="pre-input">
+      <span class="addon">@</span>
+      <input id="username" type="text" placeholder="Your Instagram username ">
     </div>
-  </div>
-  <div class="background" style="background: url('<%= url_for(@page.background) %>')">
+    <button
+      onclick="getAccess(document.getElementById('username').value, '<%= @page.url %>')"
+      class="btn-primary w-100"
+      id="check-btn"
+    >Get access
+    </button>
+
+    <button
+      class="btn-primary w-100 hidden disabled"
+      id="checking-btn"
+    >
+      <div class="loader"></div>
+      <span>Checking</span>
+    </button>
+
 
   </div>
+  <div class="insta-image">
+    <div class="insta-frame-users" style="background: url(<%=image_url('insta-screen-users.svg') %>)"></div>
+  </div>
+<!--  <div class="insta-image">-->
+<!--    <div class="insta-frame" style="background: url(<%#=image_url('insta-frame.svg') %>)">-->
+
+<!--    </div>-->
+<!--      <div class="insta-screen" style="background: url(<%#=image_url('insta-screen.svg') %>)"></div>-->
+<!--  </div>-->
+
 </div>
+
+
+<%#= javascript_pack_tag 'pages' %>
+<!--<div class="page-container">-->
+<!--  <div class="content">-->
+<!--    <div class="inner">-->
+<!--      <form action="/pages/<%#= @page.url %>/check" method="get">-->
+<!--        <h1>Введите ваш логин Instagram, чтобы открыть доступ</h1>-->
+<!--        <p><input type="text" id="name" name="name" placeholder="my_login"></p>-->
+<!--        <button onclick="save()"><%#= @page.welcome_button_text %></button>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="background" style="background: url('<%#= url_for(@page.background) %>')">-->
+
+<!--  </div>-->
+<!--</div>-->
+
+
+
 <%= csrf_meta_tags %>
 <%= javascript_pack_tag 'pages' %>
+
+
+
+
 <!--<h1>{{welcome_title}}</h1>-->
 <!--<form action="/pages/{{url}}" method="POST">-->
 <!--  <input type="text" hidden id="csrf_token" name="csrf_token" value="{{csrf_token}}">-->
