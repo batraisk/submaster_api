@@ -27,12 +27,21 @@
   <div class="insta-image">
     <div class="insta-frame-users" style="background: url(<%=image_url('insta-screen-users.svg') %>)"></div>
   </div>
-<!--  <div class="insta-image">-->
-<!--    <div class="insta-frame" style="background: url(<%#=image_url('insta-frame.svg') %>)">-->
 
-<!--    </div>-->
-<!--      <div class="insta-screen" style="background: url(<%#=image_url('insta-screen.svg') %>)"></div>-->
-<!--  </div>-->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <div><img src="<%=image_url('exclamation-circle.svg') %>" alt=""></div>
+      <div style="margin-left: 16px; flex-grow: 1;">
+        <p class="modal-title">Account not found</p>
+        <p>We did not find @<span id="modal-nickname"></span> in subscriptions, but you can still subscribe to get access.</p>
+        <div class="actions-block">
+          <button class="btn-small btn-default cancel">Cancel</button>
+          <button class="btn-small btn-primary">Subscribe & get access </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 </div>
 
@@ -57,6 +66,7 @@
 
 <%= csrf_meta_tags %>
 <%= javascript_pack_tag 'pages' %>
+<%= javascript_pack_tag 'modals' %>
 
 
 

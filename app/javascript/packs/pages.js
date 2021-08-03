@@ -21,8 +21,12 @@ getAccess = (username, url) => {
     res.json().then(resp => {
       unSetChecking();
       if (resp.is_follow) alert('вы подписаны')
-      if (resp.is_follow == false) alert('вы не подписаны')
-
+      if (resp.is_follow == false) {
+        const modal = document.getElementById("myModal");
+        modal.style.display = "block";
+        const modalNickname = document.getElementById('modal-nickname')
+        modalNickname.innerText = username;
+      }
     }, ()=>{
       unSetChecking();
     }));
@@ -45,3 +49,9 @@ unSetChecking = () => {
   checkingBtn.classList.add("hidden");
   checkingBtn.classList.remove("d-flex");
 }
+
+
+
+
+
+

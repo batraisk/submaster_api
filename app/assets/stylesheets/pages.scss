@@ -181,7 +181,6 @@
     width: 50%;
     min-height: 100vh;
     .inner {
-      //flex-basis: 55.5%;
       padding-left: 11.8%;
       padding-top: 7.5rem;
       padding-bottom: 7.5rem;
@@ -201,20 +200,16 @@
       font-weight: 500;
       font-size: 15px;
       background: #4c67fb;
-
       border-radius: .58333em;
       border: none;
       color: #fff;
       text-transform: uppercase;
-      //padding: 1.2em 2.5em;
       display: flex;
       align-items: center;
       outline: 0;
       cursor: pointer;
-      //border: .3rem solid transparent;
       text-decoration: none;
       width: 300px;
-      //transition: border-color .5s,background .5s,color .5s;
     }
   }
 
