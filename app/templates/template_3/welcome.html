@@ -1,8 +1,10 @@
-<div class="template-1 template-container" {{back}} >
-  <div class="youtube-control">
-    {{youtube}}
-  </div>
-  <div class="row" style="z-index: 11">
+<div class="template-3 template-container" >
+  <div class="row welcome-content">
+    <div class="col col-6 background-container mobile" style="background: {{primary_color}}">
+      <div class="background youtube-container" {{back}}>
+        {{youtube}}
+      </div>
+    </div>
     <div class="col col-6">
       <div class="content-container">
         <h1>{{welcome_title}}</h1>
@@ -37,6 +39,10 @@
         </div>
       </div>
     </div>
-    <div class="col lg-6"></div>
+    <div class="col col-6 background-container desktop" style="background: {{primary_color}}">
+      <div class="background youtube-container" {{back}}>
+        {{youtube}}
+      </div>
+    </div>
   </div>
 </div>

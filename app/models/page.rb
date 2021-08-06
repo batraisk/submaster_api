@@ -24,6 +24,7 @@
 #  welcome_description        :text
 #  welcome_title              :string
 #  yandex_metrika             :string
+#  youtube                    :string
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
 #  domain_id                  :bigint
@@ -45,8 +46,39 @@ class Page < ApplicationRecord
   # belongs_to :domain
   before_save :generate_content
   has_one_attached :background
-  has_many :logins
+  has_and_belongs_to_many :logins
   has_many :utm_tags
+
+  COLORS = {
+    natural: {
+      primary: '#2F54EB',
+      gradient: 'linear-gradient(90deg, #2F54EB 55.12%, #ADC6FF 100%)'
+    },
+    gold: {
+      primary: '#FA541C',
+      gradient: 'linear-gradient(90deg, #FA541C 55.12%, #FFBB96 100%)'
+    },
+    lime: {
+      primary: '#7CB305',
+      gradient: 'linear-gradient(90deg, #A0D911 55.12%, #EAFF8F 100%)',
+    },
+    blue: {
+      primary: '#1890FF',
+      gradient: 'linear-gradient(90deg, #1890FF 55.12%, #91D5FF 100%)',
+    },
+    magenta: {
+      primary: '#EB2F96',
+      gradient: 'linear-gradient(90deg, #EB2F96 55.12%, #FFADD2 100%)',
+    },
+    yellow: {
+      primary: '#434343',
+      gradient: 'linear-gradient(90deg, #262626 55.12%, #8C8C8C 100%)',
+    },
+    purple: {
+      primary: '#722ED1',
+      gradient: 'linear-gradient(90deg, #722ED1 55.12%, #D3ADF7 100%)',
+    }
+  }.freeze;
 
   private
 

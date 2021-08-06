@@ -24,6 +24,7 @@
 #  welcome_description        :text
 #  welcome_title              :string
 #  yandex_metrika             :string
+#  youtube                    :string
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
 #  domain_id                  :bigint
@@ -47,8 +48,8 @@ class PageSerializer < ActiveModel::Serializer
              :instagram_login, :out_of_stock_description,
              :out_of_stock_title, :page_name,
              :success_button_text, :success_description,
-             :success_title, :theme,
-             :timer_enable, :timer_text,
+             :success_title, :theme, :layout,
+             :timer_enable, :timer_text, :youtube,
              :timer_time, :welcome_button_text,
              :welcome_description, :welcome_title,
              :yandex_metrika, :facebook_pixel_id, :status

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_21_102532) do
+ActiveRecord::Schema.define(version: 2021_08_05_130728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,10 +96,15 @@ ActiveRecord::Schema.define(version: 2021_07_21_102532) do
   create_table "logins", force: :cascade do |t|
     t.string "name", null: false
     t.string "status", default: "not_subscribed", null: false
-    t.bigint "page_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["page_id"], name: "index_logins_on_page_id"
+  end
+
+  create_table "logins_pages", id: false, force: :cascade do |t|
+    t.bigint "login_id", null: false
+    t.bigint "page_id", null: false
+    t.index ["login_id"], name: "index_logins_pages_on_login_id"
+    t.index ["page_id"], name: "index_logins_pages_on_page_id"
   end
 
   create_table "pages", force: :cascade do |t|
@@ -129,6 +134,7 @@ ActiveRecord::Schema.define(version: 2021_07_21_102532) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "welcome_content"
     t.string "status", default: "inactive"
+    t.string "youtube"
     t.index ["domain_id"], name: "index_pages_on_domain_id"
     t.index ["user_id"], name: "index_pages_on_user_id"
   end
@@ -182,7 +188,6 @@ ActiveRecord::Schema.define(version: 2021_07_21_102532) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "domains", "users"
-  add_foreign_key "logins", "pages"
   add_foreign_key "pages", "domains"
   add_foreign_key "pages", "users"
   add_foreign_key "user_infos", "users"

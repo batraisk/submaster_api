@@ -1,64 +1,38 @@
-<%# @content.sub! "{{csrf_token}}", @form_authenticity_token %>
-<% @content.sub! '{{image}}', rails_blob_path(@page.background, only_path: true) if @page.background.attached?%>
-<%= @content.html_safe %>
-<%= csrf_meta_tags %>
-
-<%= javascript_pack_tag 'pages' %>
-
-<!--<div class="template-1 template-container" style="background: url('<%#= url_for(@page.background) %>')">-->
-<!--<div class="template-1 template-container">-->
+<!--<div class="template-1 template-container" {{back}} >-->
 <!--  <div class="row">-->
 <!--    <div class="col col-6">-->
 <!--      <div class="content-container">-->
-<!--        <h1>Title</h1>-->
-<!--        <p>Description description description-->
-<!--description description-->
-<!--description description description</p>-->
+<!--        <h1>{{welcome_title}}</h1>-->
+<!--        <p>{{welcome_description}}</p>-->
 <!--        <div class="timer">-->
-<!--          <h4>Timer text</h4>-->
+<!--          <h4>{{timer_text}}</h4>-->
 <!--          <div class="bar-container">-->
 <!--            <div-->
 <!--              class="progress-bar"-->
-<!--              style="background: linear-gradient(90deg, #2F54EB 55.12%, #ADC6FF 100%)"-->
+<!--              style="background: {{gradient}}"-->
 <!--            ></div>-->
 <!--            <span class="time">1:00</span>-->
 <!--          </div>-->
 <!--        </div>-->
-
-<!--        <button class="button">-->
-<!--          Button Title-->
-<!--        </button>-->
+<!--        <form action="/pages/{{url}}/enter_login">-->
+<!--          <button-->
+<!--            type="submit"-->
+<!--            class="button"-->
+<!--            style="-->
+<!--              'background': {{primary_color}},-->
+<!--              'borderColor': {{primary_color}}"-->
+<!--            >-->
+<!--            {{welcome_button_text}}-->
+<!--          </button>-->
+<!--        </form>-->
 
 <!--        <div class="policy">-->
 <!--          <div class="created-by">Created by <a href="">Submaster</a></div>-->
 <!--          <div class="privacy-policy-container"><a href="" class="privacy-policy">Privacy policy</a></div>-->
-<!--          <div>-->
-<!--            Created by <a href="">Submaster</a>-->
-<!--          </div>-->
-<!--          <div>Privacy policy</div>-->
 <!--        </div>-->
 <!--      </div>-->
 <!--    </div>-->
-<!--    <div class="col lg-6">-->
-
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
-<!--<div class="page-container">-->
-<!--  <div class="content">-->
-<!--    <div class="inner">-->
-<!--      <form action="/pages/<%#= @page.url %>/enter_login">-->
-<!--        <h1><%#= @page.welcome_title %></h1>-->
-<!--        <p><%#= @page.welcome_description %></p>-->
-<!--        <button type="submit"><%#= @page.welcome_button_text %></button>-->
-<!--      </form>-->
-
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="background" style="background: '<%#= request.base_url + url_for(@page.background) %>'">-->
-<!--  <div class="background" style="background: url('<%#= url_for(@page.background) %>')">-->
-
+<!--    <div class="col lg-6"></div>-->
 <!--  </div>-->
 <!--</div>-->
 
@@ -66,4 +40,8 @@
 
 
 
-<%#= javascript_pack_tag 'pages' %>
+<% @content.gsub! '{{image}}', rails_blob_path(@page.background, only_path: true) if @page.background.attached?%>
+<%= @content.html_safe %>
+<%= csrf_meta_tags %>
+
+<%= javascript_pack_tag 'pages' %>

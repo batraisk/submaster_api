@@ -24,6 +24,7 @@
 #  welcome_description        :text
 #  welcome_title              :string
 #  yandex_metrika             :string
+#  youtube                    :string
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
 #  domain_id                  :bigint

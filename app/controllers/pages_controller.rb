@@ -30,14 +30,29 @@ class PagesController < ApplicationController
     @login.name = params[:name]
     # Instagram::CheckSubscribeWorker
     if @login.save
-      redirect_to controller: 'pages', action: 'success', link: params[:link], name: params[:link], login: @login.id
+      redirect_to controller: 'pages', action: 'success', link: params[:url], name: params[:url], login: @login.id
     else
     end
   end
 
   def success
-    @page = Page.find_by_url(params[:link])
+    @page = Page.find_by_url(params[:url])
+    not_found if @page.nil?
     render template: "pages/success"
+  end
+
+  def get_bonus
+    @page = Page.find_by_url(params[:url])
+    @login = @page.logins.find_by_name(params[:name])
+    if @page.nil?
+      head :not_found if @login.nil?
+      return
+    elsif @login.nil?
+      render json: {access: false}, status: :ok
+    else
+      render json: {access: @login.is_subscribed, bonus: @page.download_link}, status: :ok
+    end
+
   end
 
   def check_login_follow
@@ -46,7 +61,15 @@ class PagesController < ApplicationController
     scrapper = Instagram::ScrapperService.new(creds.login, creds.password)
     scrapper.authenticate_with_login
     is_follow = scrapper.find_user_in_followers(@page.instagram_login, params[:name])
+    @login = @page.logins.find_or_initialize_by({name: params[:name]})
+    @login.pages << @page
+    @login.status = is_follow ? 'subscribed' : 'not_subscribed'
+    @login.save
     render json: {is_follow: is_follow}, status: :ok
+  end
+
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
   end
 
   private

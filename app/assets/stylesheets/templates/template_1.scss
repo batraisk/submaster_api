@@ -3,6 +3,12 @@
   background-repeat: no-repeat !important;
   background-size: cover !important;
 
+  .youtube-control {
+    position: absolute;
+    z-index: 0;
+    overflow: hidden;
+  }
+
   .timer {
     margin-top: 50px;
 
@@ -15,7 +21,6 @@
         border-radius: 125px;
         height: 10px;
         width: 100%;
-        //background: linear-gradient(90deg, #2F54EB 55.12%, #ADC6FF 100%);
         margin-top: 7px;
       }
 
@@ -25,6 +30,169 @@
         font-size: 14px;
         line-height: 22px;
       }
+    }
+  }
+
+  &.template-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+
+    h1 {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 38px;
+      line-height: 46px;
+      color: rgba(0, 0, 0, 0.85);
+    }
+
+    p {
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 24px;
+      margin: 0;
+      white-space: pre-wrap;
+      color: rgba(0, 0, 0, 0.85);
+
+    }
+
+    h4 {
+      color: rgba(0, 0, 0, 0.85);
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 22px;
+      margin-bottom: 7px;
+      margin-top: 0;
+    }
+
+    .content-container {
+      display: flex;
+      flex-direction: column;
+      padding-left: 127px;
+      padding-right: 127px;
+
+    }
+
+    .button {
+      box-sizing: border-box;
+      box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
+      border-radius: 2.5px;
+      flex-grow: 0;
+      //margin: 40px 10px;
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: normal;
+      text-shadow: none;
+      text-align: center;
+      color: #FFFFFF;
+      width: fit-content;
+      margin-top: 50px;
+
+      &:hover {
+        background: inherit;
+        cursor: pointer;
+      }
+    }
+    .created-by {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 22px;
+      margin-top: 50px;
+
+      a {
+        text-decoration: none;
+      }
+    }
+    .privacy-policy-container {
+      line-height: 20px;
+
+      .privacy-policy {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 20px;
+        color: rgba(0, 0, 0, 0.85);
+        text-decoration: none;
+
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+  .template-1 {
+
+    &.template-container {
+      align-items: flex-end;
+      background-position-x: right;
+
+      .content-container {
+        padding-left: 86px;
+        padding-right: 86px;
+        padding-bottom: 56px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 669px) {
+  .template-1 {
+
+    &.template-container {
+      align-items: flex-end;
+
+      .content-container {
+        h1 {
+          font-size: 30px;
+        }
+        p {
+          font-size: 16px;
+        }
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-bottom: 24px;
+      }
+
+      .button {
+        margin-top: 24px;
+        margin-right: 0;
+        width: 100%;
+      }
+
+      .timer {
+        margin-top: 24px !important;
+
+        .bar-container {
+          display: flex;
+          font-size: 8px;
+          line-height: 14px;
+
+          .progress-bar {
+            border-radius: 125px;
+            height: 8px;
+            width: 100%;
+            margin-top: 5px;
+          }
+
+          .time {
+            margin-left: 9px;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 24px;
+          }
+        }
+      }
+    }
+
+
+    .col {
+      &[class*="col-"] {
+        width: 100%;
+      }
+    }
+    .policy {
+      display: none;
     }
   }
 }

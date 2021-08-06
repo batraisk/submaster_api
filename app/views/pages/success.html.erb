@@ -1,4 +1,4 @@
-<div class="page-container success-page">
+<div class="page-container success-page hidden" id="success-page">
   <div
     class="fanfare mobile"
     style="background: center url(<%=image_url('success.svg') %>); transform: scaleX(-1);"
@@ -9,10 +9,9 @@
   <div class="content-container">
     <div><%=image_tag('check-circle.svg') %></div>
 <!--    <div class="icon-success"></div>-->
-    <h1>Title</h1>
-    <p>Description description description description description
-      description description description</p>
-    <button class="btn-primary">Button Text</button>
+    <h1><%= @page.success_title %></h1>
+    <p><%= @page.success_description %></p>
+    <button onclick="getBonus()" class="btn-primary"><%= @page.success_button_text %></button>
   </div>
   <div
     class="fanfare mobile"
@@ -21,3 +20,5 @@
   <img class="fanfare" style="transform: scaleY(-1);" src="<%=image_url('success.svg') %>" alt="">
   <img class="fanfare-horizontal" src="<%=image_url('success-horizontal.svg') %>" alt="">
 </div>
+
+<%= javascript_pack_tag 'success_page' %>

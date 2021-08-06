@@ -8,14 +8,38 @@ class Pages::CreatePageService
   end
 
   def call
-    byebug
-    data.sub! '{{welcome_title}}', page.welcome_title
-    data.sub! '{{welcome_description}}', page.welcome_description
-    data.sub! '{{timer_text}}', page.timer_text if !page.timer_text.nil?
-    data.sub! '{{welcome_button_text}}', page.welcome_button_text
-    data.sub! '{{url}}', page.url
+    %w[welcome_title
+       welcome_description
+       timer_text
+       url
+       welcome_button_text].each { |value| set_param("{{#{value}}}", page[value]) }
+    unless page.background.nil?
+      set_param '{{back}}', 'style="background: url({{image}})"'
+    end
+    set_youtube
+    set_param('{{primary_color}}', Page::COLORS[page.theme.to_sym][:primary])
+    set_param('{{gradient}}', Page::COLORS[page.theme.to_sym][:gradient])
+
 
     data
+  end
+
+  def set_youtube
+    if page.youtube.present?
+      iframe = "<iframe src = \"#{page.youtube}?autoplay=1\" id=\"frame-01\"
+      class=\"youtube-frame\"
+      title=\"YouTube video player\"
+      frameborder=\"0\"
+      allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\"
+      allowfullscreen
+      ></iframe>"
+      set_param "{{youtube}}", iframe
+    end
+  end
+
+  def set_param(search_tag, value)
+    current_value = value || ''
+    data.gsub! search_tag, current_value
   end
 
 end

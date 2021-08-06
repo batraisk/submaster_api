@@ -1,5 +1,5 @@
 class Api::V1::SubscribePagesController < ApplicationController
-  skip_before_action :verify_authenticity_token, :only => [:create, :update, :destroy]
+  skip_before_action :verify_authenticity_token, :only => [:create, :update, :destroy, :get_bonus]
 
   def index
     @user_pages = current_user.pages.order(created_at: :desc)
@@ -52,6 +52,7 @@ class Api::V1::SubscribePagesController < ApplicationController
         :success_description,
         :success_title,
         :theme,
+        :youtube,
         :timer_enable,
         :timer_text,
         :timer_time,

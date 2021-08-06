@@ -6,9 +6,16 @@ check = (url) => {
   const value = localStorage.getItem('name')
   fetch(`/pages/${url}/check_login_follow?name=${value}`).then(res =>
     res.json().then(resp => {
-      if (resp.is_follow) alert('вы подписаны')
+      if (resp.is_follow) {
+        alert('вы подписаны')
+      }
       if (resp.is_follow == false) alert('вы не подписаны')
     }));
+}
+
+isSubscribeHandler = (username, url) => {
+  localStorage.setItem('username', username);
+  window.location.href = `/pages/${url}/success`;
 }
 
 getAccess = (username, url) => {
@@ -16,11 +23,16 @@ getAccess = (username, url) => {
     alert('введите никнейм');
     return;
   }
+  // check(url)
+  // isSubscribeHandler(username, url)
   setChecking();
   fetch(`/pages/${url}/check_login_follow?name=${username}`).then(res =>
     res.json().then(resp => {
       unSetChecking();
-      if (resp.is_follow) alert('вы подписаны')
+      if (resp.is_follow === true) {
+        isSubscribeHandler(username, url)
+        // alert('вы подписаны')
+      }
       if (resp.is_follow == false) {
         const modal = document.getElementById("myModal");
         modal.style.display = "block";
@@ -50,8 +62,29 @@ unSetChecking = () => {
   checkingBtn.classList.remove("d-flex");
 }
 
+function iframeLoaded() {
+  let iFrameID = document.getElementsByClassName('youtube-frame')[0];
+  let container = document.getElementsByClassName('youtube-container')[0];
+  if (iFrameID && getComputedStyle(container, null).display === 'none') {
+    container = document.getElementsByClassName('youtube-container')[1];
+    iFrameID = document.getElementsByClassName('youtube-frame')[1];
+  }
+  if (iFrameID) {
+    if (container) {
+      console.log('container', container)
+      iFrameID.width = container.offsetWidth + "px"
+      iFrameID.height = container.offsetHeight + "px";
+    } else {
+      iFrameID.width = document.body.scrollWidth + "px";
+      iFrameID.height = document.body.scrollHeight + "px";
+    }
+  }
+}
+
+iframeLoaded()
 
 
-
-
-
+goToInsta = (login) => {
+  const link = `https://www.instagram.com/${login}/`
+  window.open(link, '_blank').focus();
+}

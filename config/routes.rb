@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   get "/pages/*url/welcome", :controller => 'pages', :action => 'welcome'
   get "/pages/*url/enter_login", :controller => 'pages', :action => 'enter_login'
   get "/pages/*url/check", :controller => 'pages', :action => 'check'
+  get "/pages/*url/get_bonus", :controller => 'pages', :action => 'get_bonus'
   get "/pages/*url", :controller => 'pages', :action => 'show'
   post "/pages/*url", :controller => 'pages', :action => 'create'
 end

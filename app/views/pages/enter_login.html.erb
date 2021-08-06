@@ -1,17 +1,17 @@
 <div class="page-container">
   <div class="content-container">
-    <h3>Enter your Instagram username to get access</h3>
-    <p>You can find your username on your profile page</p>
+    <h3><%= I18n.t 'page.enter_username' %></h3>
+    <p><%= I18n.t 'page.find_place' %></p>
 
     <div class="pre-input">
       <span class="addon">@</span>
-      <input id="username" type="text" placeholder="Your Instagram username ">
+      <input id="username" type="text" placeholder="<%= I18n.t 'page.your_username' %>">
     </div>
     <button
       onclick="getAccess(document.getElementById('username').value, '<%= @page.url %>')"
       class="btn-primary w-100"
       id="check-btn"
-    >Get access
+    ><%= I18n.t 'page.get_access' %>
     </button>
 
     <button
@@ -19,7 +19,7 @@
       id="checking-btn"
     >
       <div class="loader"></div>
-      <span>Checking</span>
+      <span><%= I18n.t 'page.checking' %></span>
     </button>
 
 
@@ -32,11 +32,11 @@
     <div class="modal-content">
       <div><img src="<%=image_url('exclamation-circle.svg') %>" alt=""></div>
       <div style="margin-left: 16px; flex-grow: 1;">
-        <p class="modal-title">Account not found</p>
-        <p>We did not find @<span id="modal-nickname"></span> in subscriptions, but you can still subscribe to get access.</p>
+        <p class="modal-title"><%= I18n.t 'page.account_not_found' %></p>
+        <p><%= I18n.t 'page.we_did_not_find' %> @<span id="modal-nickname"></span> <%= I18n.t 'page.did_not_find' %></p>
         <div class="actions-block">
-          <button class="btn-small btn-default cancel">Cancel</button>
-          <button class="btn-small btn-primary">Subscribe & get access </button>
+          <button class="btn-small btn-default cancel"><%= I18n.t 'page.cancel' %></button>
+          <button onclick="goToInsta('<%= @page.instagram_login %>')" class="btn-small btn-primary"><%= I18n.t 'page.subscribe_and_access' %></button>
         </div>
       </div>
     </div>
