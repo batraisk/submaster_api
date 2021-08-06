@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     if params[:controller].split("/").first.eql? 'admin'
       locale = :en
     elsif current_user
-      locale = current_user.user_info.locale.to_sym || :en
+      locale = current_user.user_info.locale&.to_sym || :en
     end
     I18n.with_locale(locale, &action)
   end
