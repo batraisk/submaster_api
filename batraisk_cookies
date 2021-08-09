@@ -1,0 +1,63 @@
+---
+instagram.com:
+  "/":
+    csrftoken: !ruby/object:Mechanize::Cookie
+      name: csrftoken
+      value: ol2LLyO3atv3busGWOIA0Io6QfKVi2pd
+      domain: instagram.com
+      for_domain: true
+      path: "/"
+      secure: true
+      httponly: false
+      expires: Mon, 08 Aug 2022 13:49:40 GMT
+      max_age:
+      created_at: &1 2021-08-09 16:49:40.034916000 +03:00
+      accessed_at: *1
+    mid: !ruby/object:Mechanize::Cookie
+      name: mid
+      value: YREybwAAAAGLFfNnRmWXGDjEJWE9
+      domain: instagram.com
+      for_domain: true
+      path: "/"
+      secure: true
+      httponly: false
+      expires: Wed, 09 Aug 2023 13:49:37 GMT
+      max_age:
+      created_at: 2021-08-09 16:49:37.340637000 +03:00
+      accessed_at: 2021-08-09 16:49:37.341219000 +03:00
+    rur: !ruby/object:Mechanize::Cookie
+      name: rur
+      value: ASH
+      domain: instagram.com
+      for_domain: true
+      path: "/"
+      secure: true
+      httponly: true
+      expires:
+      max_age:
+      created_at: &2 2021-08-09 16:49:40.035140000 +03:00
+      accessed_at: *2
+    ds_user_id: !ruby/object:Mechanize::Cookie
+      name: ds_user_id
+      value: '5545881382'
+      domain: instagram.com
+      for_domain: true
+      path: "/"
+      secure: true
+      httponly: false
+      expires: Sun, 07 Nov 2021 13:49:40 GMT
+      max_age:
+      created_at: &3 2021-08-09 16:49:40.035597000 +03:00
+      accessed_at: *3
+    sessionid: !ruby/object:Mechanize::Cookie
+      name: sessionid
+      value: 5545881382%3AuHMNJikXTMEijZ%3A6
+      domain: instagram.com
+      for_domain: true
+      path: "/"
+      secure: true
+      httponly: true
+      expires: Tue, 09 Aug 2022 13:49:40 GMT
+      max_age:
+      created_at: &4 2021-08-09 16:49:40.036097000 +03:00
+      accessed_at: *4
