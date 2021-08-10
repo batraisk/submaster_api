@@ -33,10 +33,10 @@ class Instagram::ScrapperService
     @agent.get(Scrapper::BASE_URL, [], referer, headers)
     csrftoken = @agent.cookies[0].cookie_value.split('=')[1]
     headers['X-CSRFToken'] = csrftoken
+
     @agent.request_headers = headers
     cookie = @agent.cookie_jar.load("#{@username}_cookies") rescue false
     unless cookie
-      byebug
       login_data = {'username': @username, 'password': @password}
       page = @agent.post(Scrapper::LOGIN_URL, login_data, headers)
       authenticated = JSON.parse(page.body)["authenticated"]
@@ -76,17 +76,29 @@ class Instagram::ScrapperService
   end
 
   def get_user_followers(id, max_id = nil)
-    params = {count: 10000, search_surface: 'follow_list_page'}
-    params[:max_id] = max_id if max_id.present?
-    # id = get_user_id(username)
-    puts params
-    request = @agent.get("https://i.instagram.com/api/v1/friendships/#{id}/followers", params)
+    # params = {count: 20000, search_surface: 'follow_list_page'}
+    # params[:max_id] = max_id if max_id.present?
+    # # id = get_user_id(username)
+    # puts params
+    params = {query: 'lavrentevanna', count: 2}
+    # params = {query_id: 17851374694183129, id: id, first:10}
+    # byebug
+    # request = @agent.get("https://i.instagram.com/api/v1/friendships/#{id}/followers", params)
+    request = @agent.get("https://www.instagram.com/graphql/query/", params)
+
     JSON.parse(request.body)
   end
 
   def user_is_follower(username, follower)
     id = get_user_id(username)
-    return find_user_in_followers(username, follower, id)
+    params = {query: follower, count: 1}
+    request = @agent.get("https://i.instagram.com/api/v1/friendships/#{id}/followers", params)
+    users = JSON.parse(request.body)['users'] || []
+    users = users.map { |user| user['username'] }
+    users.include?(follower)
+
+
+    # return find_user_in_followers(username, follower, id)
     # body = get_user_followers(username)
     # users = body['users'].map { |t| t['username']}
     # if users.include?(follower)
@@ -97,15 +109,14 @@ class Instagram::ScrapperService
     # return false
   end
 
-  def find_user_in_followers(username, follower, id, max_id = nil)
-    body = get_user_followers(id, max_id)
-    # byebug
-    users = body['users'].map { |t| t['username']}
-    if users.include?(follower)
-      return true
-    elsif body['next_max_id'].present?
-      find_user_in_followers(username, follower, id, body['next_max_id'])
-    end
-    return false
-  end
+  # def find_user_in_followers(username, follower, id, max_id = nil)
+  #   body = get_user_followers(id, max_id)
+  #   users = body['users'].map { |t| t['username']}
+  #   if users.include?(follower)
+  #     return true
+  #   elsif body['next_max_id'].present?
+  #     find_user_in_followers(username, follower, id, body['next_max_id'])
+  #   end
+  #   return false
+  # end
 end
