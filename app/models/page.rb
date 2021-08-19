@@ -48,6 +48,7 @@ class Page < ApplicationRecord
   has_one_attached :background
   has_and_belongs_to_many :logins
   has_many :utm_tags
+  has_many :guests
 
   COLORS = {
     natural: {

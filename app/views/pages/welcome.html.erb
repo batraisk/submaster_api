@@ -38,10 +38,12 @@
 
 
 
-
-
 <% @content.gsub! '{{image}}', rails_blob_path(@page.background, only_path: true) if @page.background.attached?%>
 <%= @content.html_safe %>
 <%= csrf_meta_tags %>
 
 <%= javascript_pack_tag 'pages' %>
+<script type="text/javascript" charset="utf-8">
+  saveId('<%= @guest.hashid %>')
+</script>
+

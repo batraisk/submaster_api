@@ -22,4 +22,10 @@ getBonus = () => {
   window.open(bonus, '_blank').focus();
 }
 
+updateGuestStatus = (status) => {
+  const value = localStorage.getItem('hashid')
+  if (!value) { return; }
+  fetch(`/api/v1/statistics/set_status?hashid=${value}&status=${status}`).then();
+}
+
 guard()

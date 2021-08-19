@@ -11,6 +11,7 @@ class PagesController < ApplicationController
 
   def welcome
     @page = Page.find_by_url(params[:url])
+    @guest = Guest.create(page: @page, status: 'welcome_page')
     @content = @page.welcome_content
     @form_authenticity_token = form_authenticity_token
   end

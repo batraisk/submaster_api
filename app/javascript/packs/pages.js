@@ -88,3 +88,13 @@ goToInsta = (login) => {
   const link = `https://www.instagram.com/${login}/`
   window.open(link, '_blank').focus();
 }
+
+saveId = (id) => {
+  localStorage.setItem('hashid', id)
+}
+
+updateGuestStatus = (status) => {
+  const value = localStorage.getItem('hashid')
+  if (!value) { return; }
+  fetch(`/api/v1/statistics/set_status?hashid=${value}&status=${status}`).then();
+}

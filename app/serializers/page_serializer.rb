@@ -48,7 +48,7 @@ class PageSerializer < ActiveModel::Serializer
              :instagram_login, :out_of_stock_description,
              :out_of_stock_title, :page_name,
              :success_button_text, :success_description,
-             :success_title, :theme, :layout,
+             :success_title, :theme, :layout, :statistics,
              :timer_enable, :timer_text, :youtube,
              :timer_time, :welcome_button_text,
              :welcome_description, :welcome_title,
@@ -62,5 +62,9 @@ class PageSerializer < ActiveModel::Serializer
     #   attachment_id: object.background.id,
     #   path: url
     # }
+  end
+
+  def statistics
+    Statistics::Page.new(object).full_stats
   end
 end
