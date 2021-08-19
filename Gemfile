@@ -39,6 +39,7 @@ gem "mechanize"
 gem 'enumerize'
 gem "hashid-rails", "~> 1.0"
 gem 'groupdate'
+gem 'activeadmin_froala_editor'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

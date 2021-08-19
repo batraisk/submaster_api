@@ -64,6 +64,9 @@ GEM
       kaminari (~> 1.0, >= 1.2.1)
       railties (>= 5.2, < 6.2)
       ransack (~> 2.1, >= 2.1.1)
+    activeadmin_froala_editor (0.4.0)
+      activeadmin (~> 2.0)
+      sassc (~> 2.4)
     activejob (6.1.4)
       activesupport (= 6.1.4)
       globalid (>= 0.3.6)
@@ -369,6 +372,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.12)
   activeadmin
+  activeadmin_froala_editor
   annotate
   awesome_print
   axlsx!

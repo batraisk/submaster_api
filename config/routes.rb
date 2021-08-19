@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       resources :statistics, only: :index do
         get :set_status, on: :collection
       end
+      resources :faqs, only: :index
       resources :domains
       resource :account
       resources :subscribe_pages do
