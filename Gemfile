@@ -62,6 +62,10 @@ group :development do
   gem 'bullet'
   gem 'letter_opener'
   gem 'awesome_print'
+  gem "capistrano", "~> 3.10", require: false
+  gem "capistrano-rails", "~> 1.6", require: false
+  gem "capistrano-rbenv", "~> 2.2"
+  gem "capistrano-db-tasks", require: false
 end
 
 group :test do
