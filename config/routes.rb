@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount LetsEncrypt::Engine => '/.well-known'
   resources :utm_tags
   resources :domains
   devise_for :admin_users, ActiveAdmin::Devise.config

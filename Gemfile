@@ -32,7 +32,7 @@ gem 'activeadmin'
 gem 'image_processing', '~> 1.2'
 
 gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
-gem 'axlsx_rails'
+gem 'caxlsx_rails'
 gem 'kaminari'
 
 gem "mechanize"
@@ -41,6 +41,7 @@ gem "hashid-rails", "~> 1.0"
 gem 'groupdate'
 gem 'activeadmin_froala_editor'
 gem "chartkick"
+gem 'rails-letsencrypt'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
