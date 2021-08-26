@@ -25,5 +25,17 @@ ActiveAdmin.register User do
   end
 
   filter :email
+
+  show do
+    tabs do
+      tab 'Pages' do
+        table_for user.pages do
+          column :page_name do |page|
+            link_to page.page_name, admin_page_path(page)
+          end
+        end
+      end
+    end
+  end
   
 end
