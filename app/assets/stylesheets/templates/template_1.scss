@@ -1,198 +1,244 @@
 .template-1 {
-  background-position-y: center !important;
-  background-repeat: no-repeat !important;
-  background-size: cover !important;
-
-  .youtube-control {
-    position: absolute;
-    z-index: 0;
-    overflow: hidden;
+  color: rgba(0, 0, 0, 0.85);
+  .font-nunito {
+    font-family: Nunito;
   }
+}
 
-  .timer {
-    margin-top: 50px;
-
-    .bar-container {
-      display: flex;
-      font-size: 8px;
-      line-height: 14px;
-
-      .progress-bar {
-        border-radius: 125px;
-        height: 10px;
-        width: 100%;
-        margin-top: 7px;
+@media only screen and (min-width: 1024px) {
+  .template-1 {
+    .column {
+      display: inline-block;
+      width: 50%;
+      height: 100vh;
+      &:first-child {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
       }
-
-      .time {
-        margin-left: 9px;
-        font-weight: normal;
-        font-size: 14px;
-        line-height: 22px;
+      &:last-child {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
       }
     }
-  }
-
-  &.template-container {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-
-    h1 {
-      font-style: normal;
-      font-weight: 500;
-      font-size: 38px;
-      line-height: 46px;
-      color: rgba(0, 0, 0, 0.85);
-    }
-
-    p {
-      font-weight: normal;
-      font-size: 16px;
-      line-height: 24px;
-      margin: 0;
-      white-space: pre-wrap;
-      color: rgba(0, 0, 0, 0.85);
-
-    }
-
-    h4 {
-      color: rgba(0, 0, 0, 0.85);
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 22px;
-      margin-bottom: 7px;
-      margin-top: 0;
-    }
-
     .content-container {
+      background-position: top;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position-x: left;
+      height: 100vh;
+      overflow-y: scroll;
       display: flex;
-      flex-direction: column;
-      padding-left: 127px;
-      padding-right: 127px;
-
+      align-items: center;
+      justify-content: center;
     }
+    .content {
 
-    .button {
-      box-sizing: border-box;
-      box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
-      border-radius: 2.5px;
-      flex-grow: 0;
-      //margin: 40px 10px;
-      font-size: 16px;
-      line-height: 24px;
-      font-weight: normal;
-      text-shadow: none;
-      text-align: center;
-      color: #FFFFFF;
-      width: fit-content;
-      margin-top: 50px;
+      button {
+        margin-top: 42px;
+      }
 
-      &:hover {
-        background: inherit;
-        cursor: pointer;
+      position: relative;
+      display: flex;
+      width: 490px;
+      align-items: center;
+      height: fit-content;
+      min-height: 100vh;
+      background-position: bottom;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position-x: -45px;
+
+      > div {
+        padding: 30px;
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 38px;
+        line-height: 46px;
+      }
+
+      p {
+        font-size: 16px;
+        line-height: 24px;
+        white-space: pre-line;
       }
     }
-    .created-by {
-      font-style: normal;
-      font-weight: normal;
-      font-size: 14px;
-      line-height: 22px;
-      margin-top: 50px;
 
-      a {
-        text-decoration: none;
+    .picture-container {
+      .bg-loyaut {
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        background-position: center;
+        background-size: cover;
+        height: 100vh;
+        width: 100%;
+        background-repeat: no-repeat;
+      }
+      .image {
+        height: 490px;
+        width: 490px;
       }
     }
-    .privacy-policy-container {
-      line-height: 20px;
 
-      .privacy-policy {
-        font-style: normal;
-        font-weight: normal;
-        font-size: 12px;
-        line-height: 20px;
-        color: rgba(0, 0, 0, 0.85);
-        text-decoration: none;
 
-      }
-    }
   }
 }
 
 @media only screen and (max-width: 1023px) {
   .template-1 {
+    .row {
+      flex-direction: column-reverse;
+    }
+    .content-container {
+      background-position: top;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position-x: left;
+      //height: 100vh;
+      overflow-y: scroll;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: calc(100vh - 512px);
+    }
+    .content {
 
-    &.template-container {
-      align-items: flex-end;
-      background-position-x: right;
+      button {
+        margin-top: 42px;
+      }
 
-      .content-container {
-        padding-left: 86px;
-        padding-right: 86px;
-        padding-bottom: 56px;
+      position: relative;
+      display: flex;
+      width: 100%;
+      max-width: 664px;
+      align-items: center;
+      height: fit-content;
+      min-height: calc(100vh - 512px);
+      background-position: bottom;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position-x: -45px;
+
+      > div {
+        padding: 62px;
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 52px;
+        line-height: 82px;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      p {
+        font-size: 20px;
+        line-height: 28px;
+        white-space: pre-line;
       }
     }
+    .picture-container {
+      width: 100%;
+      .bg-loyaut {
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        background-position: center;
+        background-size: cover;
+        height: 512px;
+        width: 100%;
+        background-repeat: no-repeat;
+      }
+      .image {
+        height: 388px;
+        width: 388px;
+      }
+    }
+
+
   }
 }
 
 @media only screen and (max-width: 669px) {
   .template-1 {
+    .row {
+      flex-direction: column-reverse;
+    }
+    .content-container {
+      background-position: top;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position-x: left;
+      //height: 100vh;
+      overflow-y: scroll;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: calc(100vh - 320px);
+    }
+    .content {
 
-    &.template-container {
-      align-items: flex-end;
-
-      .content-container {
-        h1 {
-          font-size: 30px;
-        }
-        p {
-          font-size: 16px;
-        }
-        padding-left: 24px;
-        padding-right: 24px;
-        padding-bottom: 24px;
-      }
-
-      .button {
-        margin-top: 24px;
-        margin-right: 0;
+      button {
+        margin-top: 42px;
         width: 100%;
       }
 
-      .timer {
-        margin-top: 24px !important;
+      position: relative;
+      display: flex;
+      width: 100%;
+      max-width: 664px;
+      align-items: center;
+      height: fit-content;
+      min-height: calc(100vh - 320px);
+      background-position: bottom;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position-x: -45px;
 
-        .bar-container {
-          display: flex;
-          font-size: 8px;
-          line-height: 14px;
-
-          .progress-bar {
-            border-radius: 125px;
-            height: 8px;
-            width: 100%;
-            margin-top: 5px;
-          }
-
-          .time {
-            margin-left: 9px;
-            font-weight: normal;
-            font-size: 16px;
-            line-height: 24px;
-          }
-        }
-      }
-    }
-
-
-    .col {
-      &[class*="col-"] {
+      > div {
+        padding: 24px;
         width: 100%;
       }
+
+      h1 {
+        font-size: 30px;
+        line-height: 47px;
+        margin-top: 0;
+      }
+
+      p {
+        font-size: 16px;
+        line-height: 24px;
+        white-space: pre-line;
+      }
     }
-    .policy {
-      display: none;
+    .picture-container {
+      width: 100%;
+      .bg-loyaut {
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        background-position: center;
+        background-size: cover;
+        height: 320px;
+        width: 100%;
+        background-repeat: no-repeat;
+      }
+      .image {
+        height: 272px;
+        width: 272px;
+      }
     }
+
   }
 }

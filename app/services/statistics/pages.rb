@@ -72,7 +72,7 @@ module Statistics
              end
       {
         data: data,
-        total_count: data.count,
+        total_count: guests_scope.count,
         trend: trend(data)
       }
     end
@@ -89,15 +89,17 @@ module Statistics
                  .count.map {|date, count| {date: date[0], status: date[1], count: count}}
              end
       result = {}
+      result_temp = {}
       data.each do |item|
-        if result[item[:date]]
-          if item[:status] == 'welcome_page'
-            result[item[:date]] = 100 * result[item[:date]].to_f / (result[item[:date]] + item[:count]).to_f
-          else
-            result[item[:date]] = 100 * item[:count].to_f / (result[item[:date]] + item[:count]).to_f
-          end
+        if !result_temp[item[:date]]
+          result_temp[item[:date]] = item[:count]
+          result[item[:date]] = 0
         else
-          result[item[:date]] = item[:count]
+          if item[:status] == 'welcome_page'
+            result[item[:date]] = 100 * result_temp[item[:date]].to_f / (result_temp[item[:date]] + item[:count]).to_f
+          else
+            result[item[:date]] = 100 * item[:count].to_f / (result_temp[item[:date]] + item[:count]).to_f
+          end
         end
       end
       result = result.map {|date, count| {date: date, count: count.round(1)}}

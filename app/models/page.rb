@@ -51,6 +51,42 @@ class Page < ApplicationRecord
   has_many :guests
 
   COLORS = {
+    default: {
+      primary: '#2F54EB',
+      bg_color: '#D6E4FF',
+      layout_color: '#FFF',
+      gradient: 'linear-gradient(90deg, #2F54EB 55.12%, #ADC6FF 100%)',
+      text_color: '#1F1F1F',
+    },
+    blue: {
+      primary: '#08979C',
+      bg_color: '#BEEAEC',
+      layout_color: '#F0F5FF',
+      gradient: 'linear-gradient(90deg, #1890FF 55.12%, #91D5FF 100%)',
+      text_color: '#1F1F1F',
+    },
+    pink: {
+      primary: '#EB2F96',
+      bg_color: '#FFD6E7',
+      layout_color: '#FFF0F6',
+      gradient: 'linear-gradient(90deg, #EB2F96 55.12%, #FFADD2 100%)',
+      text_color: '#1F1F1F',
+    },
+    mustard: {
+      primary: '#262626',
+      bg_color: '#262626',
+      layout_color: '#FFD254',
+      gradient: 'linear-gradient(90deg, #262626 55.12%, #8C8C8C 100%)',
+      text_color: '#1F1F1F',
+    },
+    dark: {
+      primary: '#722ED1',
+      bg_color: '#262626',
+      layout_color: '#262626',
+      gradient: 'linear-gradient(90deg, #722ED1 55.12%, #D3ADF7 100%)',
+      text_color: '#FFF',
+    },
+
     natural: {
       primary: '#2F54EB',
       gradient: 'linear-gradient(90deg, #2F54EB 55.12%, #ADC6FF 100%)'
@@ -63,10 +99,10 @@ class Page < ApplicationRecord
       primary: '#7CB305',
       gradient: 'linear-gradient(90deg, #A0D911 55.12%, #EAFF8F 100%)',
     },
-    blue: {
-      primary: '#1890FF',
-      gradient: 'linear-gradient(90deg, #1890FF 55.12%, #91D5FF 100%)',
-    },
+    # blue: {
+    #   primary: '#1890FF',
+    #   gradient: 'linear-gradient(90deg, #1890FF 55.12%, #91D5FF 100%)',
+    # },
     magenta: {
       primary: '#EB2F96',
       gradient: 'linear-gradient(90deg, #EB2F96 55.12%, #FFADD2 100%)',

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount LetsEncrypt::Engine => '/.well-known'
   resources :utm_tags
   resources :domains
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
       resources :domains
       resource :account
       resources :subscribe_pages do
+        get :statistics
         resources :utm_tags
         resources :logins do
           get :report, on: :collection

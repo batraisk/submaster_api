@@ -37,6 +37,12 @@ class Api::V1::SubscribePagesController < ApplicationController
     render json: { notice: 'Page was deleted' }, status: :ok
   end
 
+  def statistics
+    @user_page = current_user.pages.find(params[:subscribe_page_id])
+    data = Statistics::Page.new(@user_page, filter_params).stats
+    render json: data, status: :ok
+  end
+
   private
 
     def page_params
@@ -66,5 +72,9 @@ class Api::V1::SubscribePagesController < ApplicationController
         :background,
         :status
       )
+    end
+
+    def filter_params
+      params.permit(:mode, :date)
     end
 end

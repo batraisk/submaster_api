@@ -11,19 +11,55 @@ ActiveAdmin.register Page do
   filter :page_name
   filter :created_at
 
+  # show do
+  #   panel "Graphs" do
+  #     line_chart Page.group_by_day(:created_at).count
+  #
+  #   end
+  # end
   show do
-    panel "Graphs" do
-      line_chart Page.group_by_day(:created_at).count
-      # column_chart [["2016-01-01", 30], ["2016-02-01", 54]], stacked: true, library: {colors: ["#D80A5B", "#21C8A9", "#F39C12", "#A4C400"]}
+    tabs do
+      @stats = Statistics::Admin::Page.new(resource)
+      tab :details do
+        attributes_table do
+          row :id
+          row :download_link
+          row :facebook_server_side_token
+          row :instagram_login
+          row :out_of_stock_description
+          row :out_of_stock_title
+          row :page_name
+          row :status
+          row :success_button_text
+          row :success_description
+          row :success_title
+          row :theme
+          row :timer_enable
+          row :timer_text
+          row :timer_time
+          row :url
+          row :welcome_button_text
+          row :welcome_description
+          row :welcome_title
+          row :yandex_metrika
+          row :youtube
+          row :created_at
+          row :updated_at
+          row :facebook_pixel_id
+        end
+      end
+      tab :statistics do
+        panel "Clicks" do
+          render partial: "admin/pages/statistics/page_stats", locals: { stats: @stats.clicks[:data] }
+        end
+        panel "Subscribers" do
+          render partial: "admin/pages/statistics/page_stats", locals: { stats: @stats.subscribers[:data] }
+        end
+        panel "Ctr" do
+          render partial: "admin/pages/statistics/page_stats", locals: { stats: @stats.ctr[:data] }
+        end
 
+      end
     end
   end
-
-  form do |f|
-    f.inputs do
-      f.input :page_name
-    end
-    f.actions
-  end
-
 end

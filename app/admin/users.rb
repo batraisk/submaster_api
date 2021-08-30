@@ -28,6 +28,14 @@ ActiveAdmin.register User do
 
   show do
     tabs do
+      tab 'Details' do
+        attributes_table do
+          row :id
+          row :email
+          row :confirmed_at
+          row :created_at
+        end
+      end
       tab 'Pages' do
         table_for user.pages do
           column :page_name do |page|

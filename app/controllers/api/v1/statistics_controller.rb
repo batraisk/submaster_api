@@ -10,6 +10,7 @@ class Api::V1::StatisticsController < ApplicationController
     render json: {}, status: :ok
   end
 
+
   private
 
     def filter_params
