@@ -12,9 +12,10 @@ class Pages::CreatePageService
        welcome_description
        timer_text
        url
-       welcome_button_text].each { |value| set_param("{{#{value}}}", page[value]) }
+       welcome_button_text
+       theme].each { |value| set_param("{{#{value}}}", page[value]) }
     unless page.background.nil?
-      set_param '{{back}}', 'style="background: url({{image}})"'
+      set_param '{{back}}', 'style="background-image: url({{image}})"'
     end
     set_youtube
     set_param('{{primary_color}}', Page::COLORS[page.theme.to_sym][:primary])

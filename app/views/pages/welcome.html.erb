@@ -1,10 +1,14 @@
 <% @content.gsub! '{{image}}', rails_blob_path(@page.background, only_path: true) if @page.background.attached?%>
 <% @content.gsub! '{{youtube}}', '' unless @page.youtube%>
+<% @content.gsub! 'dark-layout-hidden', '' if @page.theme == 'dark' && !@page.youtube.present? %>
 <%= @content.html_safe %>
 <%= csrf_meta_tags %>
 
 <%= javascript_pack_tag 'pages' %>
 <script type="text/javascript" charset="utf-8">
   saveId('<%= @guest.hashid %>')
+  <% if  @page.timer_enable %>
+  runTimer('<%= @page.timer_time %>')
+  <% end %>
 </script>
 

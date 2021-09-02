@@ -1,47 +1,50 @@
-<div class="template-2 template-container" >
-  <div class="row welcome-content">
-    <div class="col col-6 background-container mobile">
-      <div class="background youtube-container" {{back}}>
-        {{youtube}}
+<div class="template-2 template-{{theme}}">
+  <div class="row">
+    <div class="column picture-container">
+      <div class="bg-layout">
+        <div class="tracery"></div>
+      </div>
+      <div class="image-container">
+        <div class="image youtube-container" {{back}}>{{youtube}}</div>
       </div>
     </div>
-    <div class="col col-6">
-      <div class="content-container">
-        <h1>{{welcome_title}}</h1>
-        <p>{{welcome_description}}</p>
-        <div class="timer">
-          <h4>{{timer_text}}</h4>
-          <div class="bar-container">
-            <div
-              class="progress-bar"
-              style="background: {{gradient}}"
-            ></div>
-            <span class="time">1:00</span>
-          </div>
-        </div>
-        <form action="/pages/{{url}}/enter_login">
-          <button
-            type="submit"
-            class="button"
-            style="
-              background: {{primary_color}};
-              border-color: {{primary_color}}"
-              onMouseOver="this.style.background='{{primary_color}}'"
-              onMouseOut="this.style.background='{{primary_color}}'"
-          >
-            {{welcome_button_text}}
-          </button>
-        </form>
 
-        <div class="policy">
-          <div class="created-by">Created by <a href="">Submaster</a></div>
-          <div class="privacy-policy-container"><a href="" class="privacy-policy">Privacy policy</a></div>
+    <div class="column content-container">
+      <div class="content">
+        <div>
+          <h1 class="font-jura">{{welcome_title}}</h1>
+          <p class="font-jura">
+            {{welcome_description}}
+          </p>
+          <div class="timer hidden" id="timer">
+            <h4>{{timer_text}}</h4>
+            <div class="bar-container">
+              <div class="progress-bar progress-layout">
+                <div
+                  class="progress-bar"
+                  id="progress"
+                  style="background: {{gradient}}; position: absolute"
+                ></div>
+              </div>
+
+              <span class="time" id="time">1:00</span>
+            </div>
+          </div>
+          <form action="/pages/{{url}}/enter_login">
+            <button
+              type="submit"
+              class="button btn-primary btn-primary-{{theme}}"
+            >
+              {{welcome_button_text}}
+            </button>
+          </form>
+
+          <div class="policy">
+            <div class="created-by">Created by <a class="submaster-link" href="">Submaster</a></div>
+            <div class="privacy-policy-container"><a href="" class="privacy-policy">Privacy policy</a></div>
+          </div>
+
         </div>
-      </div>
-    </div>
-    <div class="col col-6 background-container desktop">
-      <div class="background youtube-container" {{back}}>
-        {{youtube}}
       </div>
     </div>
   </div>

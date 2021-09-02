@@ -62,7 +62,7 @@ class Page < ApplicationRecord
       primary: '#08979C',
       bg_color: '#BEEAEC',
       layout_color: '#F0F5FF',
-      gradient: 'linear-gradient(90deg, #1890FF 55.12%, #91D5FF 100%)',
+      gradient: 'linear-gradient(90deg, #13C2C2 55.12%, #87E8DE 100%)',
       text_color: '#1F1F1F',
     },
     pink: {

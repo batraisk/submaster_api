@@ -1,4 +1,4 @@
-<div class="template-1 template-default">
+<div class="template-1 template-{{theme}}">
   <div class="row">
     <div class="column content-container">
       <div class="content">
@@ -7,21 +7,25 @@
           <p class="font-nunito">
             {{welcome_description}}
           </p>
-          <div class="timer">
+          <div class="timer hidden" id="timer">
             <h4>{{timer_text}}</h4>
             <div class="bar-container">
-              <div
-                class="progress-bar"
-                style="background: linear-gradient(90deg, #2F54EB 55.12%, #ADC6FF 100%)"
-              ></div>
-              <span class="time">1:00</span>
+              <div class="progress-bar progress-layout">
+                <div
+                  class="progress-bar"
+                  id="progress"
+                  style="background: {{gradient}}; position: absolute"
+                ></div>
+              </div>
+
+              <span class="time" id="time">1:00</span>
             </div>
           </div>
 
           <form action="/pages/{{url}}/enter_login">
             <button
               type="submit"
-              class="button btn-primary btn-primary-default"
+              class="button btn-primary btn-primary-{{theme}}"
             >
               {{welcome_button_text}}
             </button>
@@ -36,7 +40,7 @@
       </div>
     </div>
     <div class="column picture-container">
-      <div class="bg-loyaut">
+      <div class="bg-layout">
         <div class="image youtube-container" {{back}}>{{youtube}}</div>
 
       </div>

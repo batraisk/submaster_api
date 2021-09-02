@@ -15,6 +15,9 @@ class Api::V1::SubscribePagesController < ApplicationController
 
   def update
     @page = current_user.pages.find(params[:id])
+    if @page.background && params[:background] == '_destroy'
+      @page.background.purge
+    end
     # byebug
     if @page.update(page_params)
       render json: @page, status: :ok
@@ -46,7 +49,7 @@ class Api::V1::SubscribePagesController < ApplicationController
   private
 
     def page_params
-      params.permit(
+      attributes = [
         :download_link,
         :facebook_server_side_token,
         :instagram_login,
@@ -69,9 +72,11 @@ class Api::V1::SubscribePagesController < ApplicationController
         :yandex_metrika,
         :domain_id,
         :facebook_pixel_id,
-        :background,
         :status
-      )
+      ]
+      return params.permit(attributes) if params[:background] == '_destroy'
+      attributes << :background
+      params.permit(attributes)
     end
 
     def filter_params

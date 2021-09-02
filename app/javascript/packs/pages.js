@@ -98,3 +98,40 @@ updateGuestStatus = (status) => {
   if (!value) { return; }
   fetch(`/api/v1/statistics/set_status?hashid=${value}&status=${status}`).then();
 }
+
+preparedTime = (time) => {
+  return new Date(time * 1000).toISOString().substr(14, 5);
+}
+
+runTimer = (time) => {
+
+  let localtime = time;
+  const timerEl = document.getElementById('timer');
+  const progressEl = document.getElementById('progress');
+
+  if (!timerEl || !progressEl) {
+    return;
+  }
+  timerEl.classList.remove('hidden');
+  // return
+  const timeEl = document.getElementById('time');
+  timeEl.innerHTML = preparedTime(localtime);
+  let timerId = setInterval(() => {
+    localtime -= 1;
+    timeEl.innerHTML = preparedTime(localtime);
+  }, 1000);
+
+  let width = 100;
+    const path = Math.round(100 / time) / 10
+  let progressId = setInterval(() => {
+
+    width -= path
+    progressEl.setAttribute("style",`width: ${width}%`)
+  }, 100);
+
+  setTimeout(() => {
+    progressEl.setAttribute("style",`width: 0%`)
+    clearInterval(timerId);
+    clearInterval(progressId)
+  }, localtime * 1000);
+}

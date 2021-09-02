@@ -2,7 +2,7 @@ require 'rubygems'
 require 'mechanize'
 
 class Instagram::ScrapperService
-  def initialize(username = 'batraisk', password = '18052005zigad!')
+  def initialize(username = 'batraisk', password = '18052005ziga!')
     @username = username
     @password = password
     @agent = Mechanize.new { |agent|

@@ -1,0 +1,48 @@
+<div class="template-5 template-{{theme}}">
+  <div class="row">
+
+    <div class="column content-container">
+      <div class="content">
+        <div>
+          <h1 class="font-lora">{{welcome_title}}</h1>
+          <p class="font-lora">
+            {{welcome_description}}
+          </p>
+          <div class="timer hidden" id="timer">
+            <h4>{{timer_text}}</h4>
+            <div class="bar-container">
+              <div class="progress-bar progress-layout">
+                <div
+                  class="progress-bar"
+                  id="progress"
+                  style="background: {{gradient}}; position: absolute"
+                ></div>
+              </div>
+
+              <span class="time" id="time">1:00</span>
+            </div>
+          </div>
+          <form action="/pages/{{url}}/enter_login">
+            <button
+              type="submit"
+              class="button btn-primary btn-primary-{{theme}}"
+            >
+              {{welcome_button_text}}
+            </button>
+          </form>
+
+          <div class="policy">
+            <div class="created-by">Created by <a class="submaster-link" href="">Submaster</a></div>
+            <div class="privacy-policy-container"><a href="" class="privacy-policy">Privacy policy</a></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="column picture-container">
+      <div class="image-container">
+        <div class="image youtube-container" {{back}}>{{youtube}}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,15 +3,15 @@ instagram.com:
   "/":
     csrftoken: !ruby/object:Mechanize::Cookie
       name: csrftoken
-      value: ol2LLyO3atv3busGWOIA0Io6QfKVi2pd
+      value: d5BANKwwEV3Q0FhwVH7hEKDnyBrgT02p
       domain: instagram.com
       for_domain: true
       path: "/"
       secure: true
       httponly: false
-      expires: Mon, 08 Aug 2022 13:49:40 GMT
+      expires: Tue, 30 Aug 2022 07:37:18 GMT
       max_age:
-      created_at: &1 2021-08-09 16:49:40.034916000 +03:00
+      created_at: &1 2021-08-31 10:37:18.268754000 +03:00
       accessed_at: *1
     mid: !ruby/object:Mechanize::Cookie
       name: mid
@@ -24,10 +24,10 @@ instagram.com:
       expires: Wed, 09 Aug 2023 13:49:37 GMT
       max_age:
       created_at: 2021-08-09 16:49:37.340637000 +03:00
-      accessed_at: 2021-08-09 16:49:37.341219000 +03:00
+      accessed_at: 2021-08-31 10:37:16.459828000 +03:00
     rur: !ruby/object:Mechanize::Cookie
       name: rur
-      value: ASH
+      value: LDC
       domain: instagram.com
       for_domain: true
       path: "/"
@@ -35,7 +35,7 @@ instagram.com:
       httponly: true
       expires:
       max_age:
-      created_at: &2 2021-08-09 16:49:40.035140000 +03:00
+      created_at: &2 2021-08-31 10:37:18.269347000 +03:00
       accessed_at: *2
     ds_user_id: !ruby/object:Mechanize::Cookie
       name: ds_user_id
@@ -45,19 +45,19 @@ instagram.com:
       path: "/"
       secure: true
       httponly: false
-      expires: Sun, 07 Nov 2021 13:49:40 GMT
+      expires: Mon, 29 Nov 2021 07:37:18 GMT
       max_age:
-      created_at: &3 2021-08-09 16:49:40.035597000 +03:00
+      created_at: &3 2021-08-31 10:37:18.269805000 +03:00
       accessed_at: *3
     sessionid: !ruby/object:Mechanize::Cookie
       name: sessionid
-      value: 5545881382%3AuHMNJikXTMEijZ%3A6
+      value: 5545881382%3Ak1U7Flczt3oQlZ%3A0
       domain: instagram.com
       for_domain: true
       path: "/"
       secure: true
       httponly: true
-      expires: Tue, 09 Aug 2022 13:49:40 GMT
+      expires: Wed, 31 Aug 2022 07:37:18 GMT
       max_age:
-      created_at: &4 2021-08-09 16:49:40.036097000 +03:00
+      created_at: &4 2021-08-31 10:37:18.270210000 +03:00
       accessed_at: *4
