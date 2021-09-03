@@ -58,9 +58,9 @@ module Statistics
     end
 
     def clicks
+                       # .where(guests: {status: 'welcome_page'})
       guests_scope = @scope
                        .joins(:guests)
-                       .where(guests: {status: 'welcome_page'})
                        .where('guests.created_at BETWEEN ? AND ?', @from, @to)
 
       data = if @params[:mode] == 'date'
@@ -93,7 +93,8 @@ module Statistics
       data.each do |item|
         if !result_temp[item[:date]]
           result_temp[item[:date]] = item[:count]
-          result[item[:date]] = 0
+          # result[item[:date]] = 0
+          result[item[:date]] = item[:status] == 'welcome_page' ? 0 : 100
         else
           if item[:status] == 'welcome_page'
             result[item[:date]] = 100 * result_temp[item[:date]].to_f / (result_temp[item[:date]] + item[:count]).to_f

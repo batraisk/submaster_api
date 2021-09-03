@@ -48,7 +48,7 @@ module Statistics
     end
 
     def clicks
-      guests_scope = @page.guests.where(status: 'welcome_page').where('created_at BETWEEN ? AND ?', @from, @to)
+      guests_scope = @page.guests.where('created_at BETWEEN ? AND ?', @from, @to)
       data = if @params[:mode] == 'date'
                  guests_scope.group_by_minute('created_at')
                    .count(:id).map { |date, count| {date: date.strftime('%T'), count: count} }
@@ -84,7 +84,7 @@ module Statistics
       data = if @params[:mode] == 'date'
                guests_scope
                  .group_by_hour('created_at').group('date(created_at)', 'status')
-                 .count.map {|date, count| {date: date[0].strftime('%T'), status: date[1], count: count}}
+                 .count.map {|date, count| {date: "#{date[0].strftime('%R')} - #{(date[0] + 1.hour).strftime('%R')}", status: date[1], count: count}}
              else
                guests_scope
                  .group('date(created_at)', 'status')
@@ -96,7 +96,7 @@ module Statistics
       data.each do |item|
         if !temp_result[item[:date]]
           temp_result[item[:date]] = item[:count]
-          result[item[:date]] = 0
+          result[item[:date]] = item[:status] == 'welcome_page' ? 0 : 100
         else
 
           if item[:status] == 'welcome_page'
