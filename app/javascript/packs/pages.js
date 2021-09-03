@@ -52,7 +52,7 @@ setChecking = () => {
   checkingBtn.classList.remove("hidden");
   checkingBtn.classList.add("d-flex");
 }
-
+// https://www.instagram.com/user/?__a=1
 unSetChecking = () => {
   const checkBtn = document.getElementById('check-btn');
   const checkingBtn = document.getElementById('checking-btn');
@@ -133,5 +133,5 @@ runTimer = (time) => {
     progressEl.setAttribute("style",`width: 0%`)
     clearInterval(timerId);
     clearInterval(progressId)
-  }, localtime * 1000);
+  }, localtime * 1000 + 100);
 }

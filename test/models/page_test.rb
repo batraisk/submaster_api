@@ -5,6 +5,7 @@
 #  id                         :bigint           not null, primary key
 #  download_link              :string
 #  facebook_server_side_token :string
+#  insta_avatar               :string
 #  instagram_login            :string
 #  layout                     :string
 #  out_of_stock_description   :text

@@ -69,6 +69,8 @@ GEM
     activeadmin_froala_editor (0.4.0)
       activeadmin (~> 2.0)
       sassc (~> 2.4)
+    activeadmin_quill_editor (0.3.4)
+      activeadmin (~> 2.0)
     activejob (6.1.4)
       activesupport (= 6.1.4)
       globalid (>= 0.3.6)
@@ -424,6 +426,7 @@ DEPENDENCIES
   active_model_serializers (~> 0.10.12)
   activeadmin
   activeadmin_froala_editor
+  activeadmin_quill_editor
   annotate
   awesome_print
   axlsx!

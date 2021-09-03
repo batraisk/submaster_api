@@ -6,14 +6,26 @@ class PagesController < ApplicationController
     @content = @page.welcome_content
     @form_authenticity_token = form_authenticity_token
     url = params[:format] ? "#{params[:url]}.#{params[:format]}" : params[:url]
-    redirect_to controller: 'pages', action: 'welcome', url: url
+    redirect_to controller: 'pages', action: 'welcome', url: url, params: request.query_parameters and return
   end
 
   def welcome
     @page = Page.find_by_url(params[:url])
-    @guest = Guest.create(page: @page, status: 'welcome_page')
+    url = params[:format] ? "#{params[:url]}.#{params[:format]}" : params[:url]
+    redirect_to controller: 'pages', action: 'out_of_stock', url: url and return if @page.status == 'inactive'
+    @guest = Guest.new(page: @page, status: 'welcome_page')
+    unless utm_params.to_h.blank?
+      utm = UtmTag.new(utm_params)
+      utm.guest = @guest
+      utm.page = @page
+    end
+    @guest.save!
     @content = @page.welcome_content
     @form_authenticity_token = form_authenticity_token
+  end
+
+  def out_of_stock
+    @page = Page.find_by_url(params[:url])
   end
 
   def enter_login
@@ -84,5 +96,10 @@ class PagesController < ApplicationController
       end
 
       return params[:url]
+    end
+
+    def utm_params
+      params.permit(:utm_source, :utm_medium, :utm_campaign, :utm_content)
+
     end
 end

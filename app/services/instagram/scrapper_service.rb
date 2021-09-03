@@ -65,9 +65,12 @@ class Instagram::ScrapperService
   end
 
   def get_user_info(username)
-    user_info = @agent.get("https://www.instagram.com/#{username}/?__a=1")
-
-    JSON.parse(user_info.body)
+    begin
+      user_info = @agent.get("https://www.instagram.com/#{username}/?__a=1")
+      JSON.parse(user_info.body)
+    rescue => e
+      return false
+    end
   end
 
   def get_user_id(username)

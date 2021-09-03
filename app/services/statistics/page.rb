@@ -50,7 +50,7 @@ module Statistics
     def clicks
       guests_scope = @page.guests.where(status: 'welcome_page').where('created_at BETWEEN ? AND ?', @from, @to)
       data = if @params[:mode] == 'date'
-                 guests_scope.group_by_hour('created_at')
+                 guests_scope.group_by_minute('created_at')
                    .count(:id).map { |date, count| {date: date.strftime('%T'), count: count} }
                else
                  guests_scope.group_by_day('created_at')
@@ -66,7 +66,7 @@ module Statistics
     def subscribers
       logins_scope = @page.logins.where(status: 'subscribed').where('created_at BETWEEN ? AND ?', @from, @to)
       data = if @params[:mode] == 'date'
-               logins_scope.group_by_hour('created_at')
+               logins_scope.group_by_minute('created_at')
                  .count(:id).map { |date, count| {date: date.strftime('%T'), count: count} }
              else
                logins_scope.group_by_day('created_at')

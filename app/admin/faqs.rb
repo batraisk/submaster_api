@@ -14,7 +14,7 @@ ActiveAdmin.register Faq do
   form do |f|
     f.inputs do
       f.input :question
-      f.input :answer, as: :froala_editor
+      f.input :answer, as: :quill_editor
     end
     f.actions
   end

@@ -1,3 +1,4 @@
+
 <div class="page-container">
   <div class="content-container">
     <h3><%= I18n.t 'page.enter_username' %></h3>
@@ -25,12 +26,12 @@
 
   </div>
   <div class="insta-image">
-    <div class="insta-frame-users" style="background: url(<%=image_url('insta-screen-users.svg') %>)"></div>
+    <div class="insta-frame-users" style="background: url(<%=asset_pack_path('media/images/insta-screen-users.svg') %>)"></div>
   </div>
 
   <div id="myModal" class="modal">
     <div class="modal-content">
-      <div><img src="<%=image_url('exclamation-circle.svg') %>" alt=""></div>
+      <div><%= image_pack_tag('media/images/exclamation-circle.svg') %></div>
       <div style="margin-left: 16px; flex-grow: 1;">
         <p class="modal-title"><%= I18n.t 'page.account_not_found' %></p>
         <p><%= I18n.t 'page.we_did_not_find' %> @<span id="modal-nickname"></span> <%= I18n.t 'page.did_not_find' %></p>

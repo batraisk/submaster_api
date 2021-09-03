@@ -5,6 +5,7 @@
 #  id                         :bigint           not null, primary key
 #  download_link              :string
 #  facebook_server_side_token :string
+#  insta_avatar               :string
 #  instagram_login            :string
 #  layout                     :string
 #  out_of_stock_description   :text
@@ -46,6 +47,7 @@ class Page < ApplicationRecord
   # belongs_to :domain
   before_save :generate_content
   has_one_attached :background
+  # has_one_attached :profile_pic
   has_and_belongs_to_many :logins
   has_many :utm_tags
   has_many :guests

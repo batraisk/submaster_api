@@ -38,6 +38,7 @@
     <orderEntry type="library" scope="PROVIDED" name="active_model_serializers (v0.10.12, RVM: ruby-3.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activeadmin (v2.9.0, RVM: ruby-3.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activeadmin_froala_editor (v0.4.0, RVM: ruby-3.0.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="activeadmin_quill_editor (v0.3.4, RVM: ruby-3.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activejob (v6.1.4, RVM: ruby-3.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activemodel (v6.1.4, RVM: ruby-3.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activerecord (v6.1.4, RVM: ruby-3.0.1) [gem]" level="application" />

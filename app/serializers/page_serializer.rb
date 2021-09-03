@@ -5,6 +5,7 @@
 #  id                         :bigint           not null, primary key
 #  download_link              :string
 #  facebook_server_side_token :string
+#  insta_avatar               :string
 #  instagram_login            :string
 #  layout                     :string
 #  out_of_stock_description   :text
@@ -51,7 +52,7 @@ class PageSerializer < ActiveModel::Serializer
              :success_title, :theme, :layout, :statistics,
              :timer_enable, :timer_text, :youtube,
              :timer_time, :welcome_button_text,
-             :welcome_description, :welcome_title,
+             :welcome_description, :welcome_title, :insta_avatar,
              :yandex_metrika, :facebook_pixel_id, :status
 
   def background
