@@ -61,7 +61,7 @@ ActiveAdmin.register Page do
 
       end
       tab 'Visits' do
-        paginated_collection(resource.guests.page(params[:page]).per(15), download_links: false) do
+        paginated_collection(resource.guests.order(created_at: :desc).page(params[:page]).per(15), download_links: false) do
           table_for(collection, sortable: false) do
             column :created_at
             column :status

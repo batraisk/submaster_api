@@ -44,7 +44,7 @@ module Statistics
       logins_scope = @scope.joins(:logins).where('logins.created_at BETWEEN ? AND ?', @from, @to)
       data = if @params[:mode] == 'date'
                logins_scope.group_by_hour('logins.created_at')
-                 .count(:id).map { |date, count| {date: date.strftime('%T'), count: count} }
+                 .count(:id).map { |date, count| {date: "#{date.strftime('%R')} - #{(date + 1.hour).strftime('%R')}", count: count} }
              else
                logins_scope.group_by_day('logins.created_at')
                  .count(:id).map { |date, count| {date: date, count: count} }
@@ -65,7 +65,7 @@ module Statistics
 
       data = if @params[:mode] == 'date'
                guests_scope.group_by_hour('guests.created_at')
-                 .count(:id).map { |date, count| {date: date.strftime('%T'), count: count} }
+                 .count(:id).map { |date, count| {date: "#{date.strftime('%R')} - #{(date + 1.hour).strftime('%R')}", count: count} }
              else
                guests_scope.group_by_day('guests.created_at')
                  .count(:id).map { |date, count| {date: date, count: count} }
@@ -82,7 +82,7 @@ module Statistics
       data = if @params[:mode] == 'date'
                guests_scope
                  .group_by_hour('guests.created_at').group('guests.status')
-                 .count.map {|date, count| {date: date[0].strftime('%T'), status: date[1], count: count}}
+                 .count.map {|date, count| {date: "#{date[0].strftime('%R')} - #{(date[0] + 1.hour).strftime('%R')}", status: date[1], count: count | 0}}
              else
                guests_scope
                  .group('date(guests.created_at)', 'guests.status')
@@ -102,7 +102,7 @@ module Statistics
           end
         end
       end
-      result = result.map {|date, count| {date: date, count: count.round(1)}}
+      result = result.map {|date, count| {date: date, count: count.nan? ? 0 : count.round(1)}}
       {
         data: result,
         total_count: result.last ? result.last[:count] : 0,
