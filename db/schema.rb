@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_03_024849) do
+ActiveRecord::Schema.define(version: 2021_09_09_103244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -180,12 +180,65 @@ ActiveRecord::Schema.define(version: 2021_09_03_024849) do
     t.index ["user_id"], name: "index_pages_on_user_id"
   end
 
+  create_table "payment_configs", force: :cascade do |t|
+    t.integer "singleton_guard"
+    t.string "merchant_id"
+    t.string "payment_key"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["singleton_guard"], name: "index_payment_configs_on_singleton_guard", unique: true
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string "order_id"
+    t.string "currency"
+    t.string "signature"
+    t.datetime "order_time"
+    t.string "order_status", default: "created", null: false
+    t.integer "amount"
+    t.bigint "user_id"
+    t.string "masked_card"
+    t.string "sender_cell_phone"
+    t.string "fee"
+    t.string "reversal_amount"
+    t.string "settlement_amount"
+    t.string "actual_amount"
+    t.string "sender_email"
+    t.string "actual_currency"
+    t.string "sender_account"
+    t.string "card_type"
+    t.string "card_bin"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
+  create_table "promocodes", force: :cascade do |t|
+    t.string "code"
+    t.string "kind", default: "currency", null: false
+    t.datetime "begins_at"
+    t.datetime "ends_at"
+    t.integer "duration"
+    t.integer "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "user_infos", force: :cascade do |t|
     t.string "locale"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_user_infos_on_user_id"
+  end
+
+  create_table "user_promocodes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "promocode_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["promocode_id"], name: "index_user_promocodes_on_promocode_id"
+    t.index ["user_id"], name: "index_user_promocodes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -231,7 +284,10 @@ ActiveRecord::Schema.define(version: 2021_09_03_024849) do
   add_foreign_key "guests", "pages"
   add_foreign_key "pages", "domains"
   add_foreign_key "pages", "users"
+  add_foreign_key "payments", "users"
   add_foreign_key "user_infos", "users"
+  add_foreign_key "user_promocodes", "promocodes"
+  add_foreign_key "user_promocodes", "users"
   add_foreign_key "utm_tags", "guests"
   add_foreign_key "utm_tags", "pages"
 end

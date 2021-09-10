@@ -36,11 +36,18 @@ class User < ApplicationRecord
          :trackable, :confirmable, :jwt_authenticatable,
          jwt_revocation_strategy: JwtDenylist
 
-  has_many :domains
+  has_many :domains, dependent: :delete_all
+  has_many :payments, dependent: :delete_all
   has_many :pages, dependent: :delete_all
   has_one :user_info
+  has_many :user_promocodes
+  has_many :promocodes, through: :user_promocodes
 
   after_create :create_info
+
+  def balance
+    (payments.where(order_status: "approved").sum(:amount) + promocodes.sum(:amount)).to_f / 100
+  end
 
   private
 

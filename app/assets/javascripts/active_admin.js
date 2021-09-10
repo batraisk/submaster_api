@@ -5,3 +5,4 @@
 //= require Chart.bundle
 //= require activeadmin/quill_editor/quill
 //= require activeadmin/quill_editor_input
+//= require active_admin_datetimepicker

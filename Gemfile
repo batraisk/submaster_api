@@ -43,6 +43,8 @@ gem 'activeadmin_froala_editor'
 gem "chartkick"
 gem 'rails-letsencrypt'
 gem 'activeadmin_quill_editor'
+gem 'faraday'
+gem 'active_admin_datetimepicker'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

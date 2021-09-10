@@ -10,12 +10,12 @@ Rails.application.routes.draw do
       sign_out: 'logout',
       registration: 'signup'
     },
-               controllers: {
-                 sessions: 'api/v1/users/sessions',
-                 registrations: 'api/v1/users/registrations',
-                 passwords: 'api/v1/users/passwords',
-                 confirmations: 'api/v1/users/confirmations'
-               }
+    controllers: {
+      sessions: 'api/v1/users/sessions',
+      registrations: 'api/v1/users/registrations',
+      passwords: 'api/v1/users/passwords',
+      confirmations: 'api/v1/users/confirmations'
+    }
   end
 
   namespace :api do
@@ -24,7 +24,14 @@ Rails.application.routes.draw do
       resources :statistics, only: :index do
         get :set_status, on: :collection
       end
+      resources :promocodes do
+        get :apply_promocode, on: :collection
+      end
       resources :faqs, only: :index
+      resources :payments do
+        post :payment_link, on: :collection
+        post :check, on: :collection
+      end
       resources :domains
       resource :account
       resources :subscribe_pages do
