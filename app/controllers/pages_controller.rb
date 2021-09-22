@@ -11,9 +11,16 @@ class PagesController < ApplicationController
 
   def welcome
     @page = Page.find_by_url(params[:url])
+
+    unless @page.user.can_pay_for_subscription?
+      redirect_to controller: 'pages', action: 'out_of_stock' and return
+    end
     url = params[:format] ? "#{params[:url]}.#{params[:format]}" : params[:url]
     redirect_to controller: 'pages', action: 'out_of_stock', url: url and return if @page.status == 'inactive'
-    @guest = Guest.new(page: @page, status: 'welcome_page')
+    @guest = Guest.new(page: @page,
+                       status: 'welcome_page',
+                       remote_ip: request.remote_ip,
+                       user_agent: request.user_agent)
     unless utm_params.to_h.blank?
       utm = UtmTag.new(utm_params)
       utm.guest = @guest
@@ -36,6 +43,16 @@ class PagesController < ApplicationController
   def check
     @page = Page.find_by_url(params[:url])
     @form_authenticity_token = form_authenticity_token
+  end
+
+  def run_deferred_events
+    @page = Page.find_by_url(params[:url])
+    @login = Login.find_by_name(params[:login])
+    @guest = Guest.find(params[:hashid])
+    Scrapper::CHECK_INTERVALS.each do |interval|
+      Instagram::CheckSubscribeWorker.perform_in(interval, @page.id, @login.id, @guest.id)
+    end
+    render head :no_content
   end
 
   def create
@@ -74,9 +91,13 @@ class PagesController < ApplicationController
     scrapper = Instagram::ScrapperService.new(creds.login, creds.password)
     is_follow = scrapper.user_is_follower(@page.instagram_login, params[:name])
     @login = @page.logins.find_or_initialize_by({name: params[:name]})
+    was_subscribed = @login.is_subscribed
     @login.pages << @page
     @login.status = is_follow ? 'subscribed' : 'not_subscribed'
     @login.save
+    if is_follow and !was_subscribed
+      @page.user.pay_for_subscription(@page, @login)
+    end
     render json: {is_follow: is_follow}, status: :ok
   end
 

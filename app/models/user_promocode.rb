@@ -23,12 +23,18 @@ class UserPromocode < ApplicationRecord
   belongs_to :promocode
 
   validates :user_id, uniqueness: { scope: [:promocode_id] }
-  validate :correct_date_expected
+  validate :correct_date_expected, :one_used_expected
 
   def correct_date_expected
     return true if promocode.nil?
     errors.add(:code, 'expired') if self.promocode.ends_at < DateTime.now
     errors.add(:code, 'not yet') if self.promocode.begins_at > DateTime.now
+  end
+
+  def one_used_expected
+    return true if promocode.nil?
+    user_promocode = UserPromocode.where(user: user, promocode: promocode).first
+    errors.add(:code, 'used') if user_promocode.nil?
   end
 
 end

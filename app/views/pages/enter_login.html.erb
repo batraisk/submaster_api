@@ -67,9 +67,12 @@
 
 <%= csrf_meta_tags %>
 <%= javascript_pack_tag 'pages' %>
+<%= javascript_pack_tag 'enter_login_page' %>
 <%= javascript_pack_tag 'modals' %>
 
-
+<script type="text/javascript" charset="utf-8">
+  checkAccess('<%= @page.url %>')
+</script>
 
 
 <!--<h1>{{welcome_title}}</h1>-->

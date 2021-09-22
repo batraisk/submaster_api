@@ -3,7 +3,9 @@
 # Table name: guests
 #
 #  id         :bigint           not null, primary key
+#  remote_ip  :string
 #  status     :string
+#  user_agent :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  page_id    :bigint

@@ -63,6 +63,52 @@
         color: rgba(0, 0, 0, 0.85);
       }
     }
+
+    &-green {
+      .content-container, .picture-container {
+        background-color: #EEF2E9;
+      }
+      .timer {
+        h4 {
+          color: rgba(0, 0, 0, 0.85);
+        }
+        .progress-bar {
+          background: linear-gradient(90deg, #008F5C 55.12%, #93D0B2 100%);
+        }
+      }
+      .submaster-link {
+        color: #008F5C;
+      }
+      h1 {
+        color: rgba(0, 0, 0, 0.85);
+      }
+      p {
+        color: rgba(0, 0, 0, 0.85);
+      }
+    }
+
+    &-red {
+      .content-container, .picture-container {
+        background-color: #FFF2E8;
+      }
+      .timer {
+        h4 {
+          color: rgba(0, 0, 0, 0.85);
+        }
+        .progress-bar {
+          background: linear-gradient(90deg, #CF1322 55.12%, #F9C6C3 100%);
+        }
+      }
+      .submaster-link {
+        color: #1F1F1F;
+      }
+      h1 {
+        color: rgba(0, 0, 0, 0.85);
+      }
+      p {
+        color: rgba(0, 0, 0, 0.85);
+      }
+    }
     &-pink {
       .content-container, .picture-container {
         background-color: #fff0f6;

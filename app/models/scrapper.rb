@@ -40,4 +40,6 @@ class Scrapper < ActiveRecord::Base
   MAX_RETRY_DELAY = 60
 
   LATEST_STAMPS_USER_SECTION = 'users'
+
+  CHECK_INTERVALS = [5.minutes, 30.minutes, 1.hour].freeze
 end

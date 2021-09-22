@@ -42,11 +42,25 @@ class User < ApplicationRecord
   has_one :user_info
   has_many :user_promocodes
   has_many :promocodes, through: :user_promocodes
+  has_many :purchases
 
   after_create :create_info
 
   def balance
-    (payments.where(order_status: "approved").sum(:amount) + promocodes.sum(:amount)).to_f / 100
+    (payments.where(order_status: "approved").sum(:amount) +
+      promocodes.sum(:amount) -
+      purchases.sum(:amount)).to_f / 100
+  end
+
+  def can_pay_for_subscription?
+    price = PaymentConfig.instance.ru_price || 0
+    return false if balance < price
+    true
+  end
+
+  def pay_for_subscription(page, login)
+    return unless can_pay_for_subscription?
+    purchases.create!({product: login, amount: price, page: page, login: login})
   end
 
   private

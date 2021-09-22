@@ -21,14 +21,14 @@ ActiveAdmin.register Promocode do
   form do |f|
     f.inputs do
       f.input :code
-      f.input :kind,
-              as: :radio,
-              label: 'Type',
-              collection: [["Currency", :currency, { checked: 'checked' }], ["Period", :time_period]],
-              value: :add
+      # f.input :kind,
+      #         as: :radio,
+      #         label: 'Type',
+      #         collection: [["Currency", :currency, { checked: 'checked' }], ["Period", :time_period]],
+      #         value: :add
       f.input :begins_at, as: :date_time_picker
       f.input :ends_at, as: :date_time_picker
-      f.input :duration, label: 'Duration in days'
+      # f.input :duration, label: 'Duration in days'
       f.input :amount,
               as: :number,
               label: 'Amount in ruble',

@@ -3,7 +3,9 @@
 # Table name: payment_configs
 #
 #  id              :bigint           not null, primary key
+#  en_price        :integer
 #  payment_key     :string
+#  ru_price        :integer
 #  singleton_guard :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

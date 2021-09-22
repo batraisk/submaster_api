@@ -51,6 +51,7 @@ class Page < ApplicationRecord
   has_and_belongs_to_many :logins
   has_many :utm_tags
   has_many :guests
+  has_many :purchases
 
   COLORS = {
     default: {
@@ -87,6 +88,20 @@ class Page < ApplicationRecord
       layout_color: '#262626',
       gradient: 'linear-gradient(90deg, #722ED1 55.12%, #D3ADF7 100%)',
       text_color: '#FFF',
+    },
+    red: {
+      primary: '#F21414',
+      bg_color: '#FFBBAC',
+      layout_color: '#FFF2E8',
+      gradient: 'linear-gradient(90deg, #CF1322 55.12%, #F9C6C3 100%)',
+      text_color: '#1F1F1F',
+    },
+    green: {
+      primary: '#008F5C',
+      bg_color: '#93D0B2',
+      layout_color: '#EEF2E9',
+      gradient: 'linear-gradient(90deg, #008F5C 55.12%, #93D0B2 100%)',
+      text_color: '#1F1F1F',
     },
 
     natural: {

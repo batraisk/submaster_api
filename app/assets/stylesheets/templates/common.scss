@@ -251,5 +251,21 @@ button.btn-primary {
       border: 1px solid #9254DE;
     }
   }
+  &-red {
+    background: #F21414;
+    border: 1px solid #F21414;
+    &:hover:not(.disabled) {
+      background: #FF4F4F;
+      border: 1px solid #FF4F4F;
+    }
+  }
+  &-green {
+    background: #008F5C;
+    border: 1px solid #008F5C;
+    &:hover:not(.disabled) {
+      background: #17A874;
+      border: 1px solid #17A874;
+    }
+  }
 }
 

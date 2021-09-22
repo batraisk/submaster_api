@@ -103,7 +103,7 @@ module Statistics
           end
         end
       end
-      result = result.map {|date, count| {date: date, count: count.nan? ? 0 : count.round(1)}}
+      result = result.map {|date, count| {date: date, count: count.is_a?(Numeric) ? count.round(1) : 0}}
       {
         data: result,
         total_count: result.last ? result.last[:count] : 0,

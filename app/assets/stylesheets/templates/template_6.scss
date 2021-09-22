@@ -72,6 +72,48 @@
         color: rgba(0, 0, 0, 0.85);
       }
     }
+
+    &-green {
+      .title {
+        background: #008F5C;
+      }
+      .timer {
+        h4 {
+          color: rgba(0, 0, 0, 0.85);
+        }
+        .progress-bar {
+          background: linear-gradient(90deg, #008F5C 55.12%, #93D0B2 100%);
+        }
+      }
+      .submaster-link {
+        color: #008F5C;
+      }
+
+      p {
+        color: rgba(0, 0, 0, 0.85);
+      }
+    }
+
+    &-red {
+      .title {
+        background: #F21414;
+      }
+      .timer {
+        h4 {
+          color: rgba(0, 0, 0, 0.85);
+        }
+        .progress-bar {
+          background: linear-gradient(90deg, #CF1322 55.12%, #F9C6C3 100%);
+        }
+      }
+      .submaster-link {
+        color: #F21414;
+      }
+
+      p {
+        color: rgba(0, 0, 0, 0.85);
+      }
+    }
     &-pink {
       .title {
         background: #EB2F96;

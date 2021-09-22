@@ -31,7 +31,6 @@ getAccess = (username, url) => {
       unSetChecking();
       if (resp.is_follow === true) {
         isSubscribeHandler(username, url)
-        // alert('вы подписаны')
       }
       if (resp.is_follow == false) {
         const modal = document.getElementById("myModal");
@@ -71,7 +70,6 @@ function iframeLoaded() {
   }
   if (iFrameID) {
     if (container) {
-      console.log('container', container)
       iFrameID.width = container.offsetWidth + "px"
       iFrameID.height = container.offsetHeight + "px";
     } else {
@@ -85,6 +83,9 @@ iframeLoaded()
 
 
 goToInsta = (login) => {
+  const value = localStorage.getItem('hashid');
+  fetch(`/api/v1/pages/run_deferred_events?hashid=${value}&login=${login}`).then();
+
   const link = `https://www.instagram.com/${login}/`
   window.open(link, '_blank').focus();
 }
@@ -94,7 +95,7 @@ saveId = (id) => {
 }
 
 updateGuestStatus = (status) => {
-  const value = localStorage.getItem('hashid')
+  const value = localStorage.getItem('hashid');
   if (!value) { return; }
   fetch(`/api/v1/statistics/set_status?hashid=${value}&status=${status}`).then();
 }

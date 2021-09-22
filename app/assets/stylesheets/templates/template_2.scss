@@ -86,6 +86,72 @@
         color: rgba(0, 0, 0, 0.85);
       }
     }
+
+    &-green {
+      .content-container {
+        background-color: #EEF2E9;
+        background-image: asset-data-url('templates/template2/content-bg-green.svg');
+      }
+      .tracery {
+        background-image: asset-data-url('templates/template2/image-bg-green.svg');
+      }
+      .timer {
+        h4 {
+          color: rgba(0, 0, 0, 0.85);
+        }
+        .progress-bar {
+          background: linear-gradient(90deg, #008F5C 55.12%, #93D0B2 100%);
+        }
+      }
+      .picture-container {
+        background-color: #EEF2E9;
+        .bg-layout {
+          background-color: #93D0B2;
+        }
+      }
+      .submaster-link {
+        color: #008F5C;
+      }
+      h1 {
+        color: rgba(0, 0, 0, 0.85);
+      }
+      p {
+        color: rgba(0, 0, 0, 0.85);
+      }
+    }
+
+    &-red {
+      .content-container {
+        background-color: #FFF2E8;
+        background-image: asset-data-url('templates/template2/content-bg-red.svg');
+      }
+      .tracery {
+        background-image: asset-data-url('templates/template2/image-bg-red.svg');
+      }
+      .timer {
+        h4 {
+          color: rgba(0, 0, 0, 0.85);
+        }
+        .progress-bar {
+          background: linear-gradient(90deg, #CF1322 55.12%, #F9C6C3 100%);
+        }
+      }
+      .picture-container {
+        background-color: #FFF2E8;
+        .bg-layout {
+          background-color: #FFBBAC;
+        }
+      }
+      .submaster-link {
+        color: #1F1F1F;
+      }
+      h1 {
+        color: rgba(0, 0, 0, 0.85);
+      }
+      p {
+        color: rgba(0, 0, 0, 0.85);
+      }
+    }
     &-pink {
       .content-container {
         background-color: #fff0f6;
