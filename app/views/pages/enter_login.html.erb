@@ -43,6 +43,18 @@
     </div>
   </div>
 
+  <div id="validateModal" class="modal">
+    <div class="modal-content">
+      <div><%= image_pack_tag('media/images/exclamation-circle.svg') %></div>
+      <div style="margin-left: 16px; flex-grow: 1;">
+        <p class="modal-title"><%= I18n.t 'page.not_valid_nickname' %></p>
+        <div class="actions-block">
+          <button class="btn-small btn-primary cancelValidateModal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 </div>
 

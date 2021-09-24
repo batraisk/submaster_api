@@ -20,4 +20,5 @@
 class Domain < ApplicationRecord
   belongs_to :user
   has_many :pages
+  validates :url, presence: true, uniqueness: true
 end

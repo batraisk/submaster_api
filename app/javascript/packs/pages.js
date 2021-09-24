@@ -18,7 +18,22 @@ isSubscribeHandler = (username, url) => {
   window.location.href = `/pages/${url}/success`;
 }
 
+isValidNickname = (username) => {
+  let valid = true;
+  ['@', '*', ' '].forEach(sym => {
+    if (username.includes(sym)) {
+      valid = false
+    }
+  })
+  return valid
+}
 getAccess = (username, url) => {
+  if (!isValidNickname(username)) {
+    console.log('not')
+    const modal = document.getElementById("validateModal");
+    modal.style.display = "block";
+    return;
+  }
   if (!username) {
     alert('введите никнейм');
     return;

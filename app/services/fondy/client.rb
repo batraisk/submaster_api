@@ -94,11 +94,7 @@ module Fondy
   private
 
     def send_request(method, url, params, verify_signature: true, response_class: Response)
-      # byebug
-
-      # return
       http_response = Request.call(method, url, params)
-      # byebug
       response = response_class.new(http_response)
       if verify_signature && response.success?
         Signature.verify(params: response.to_h, password: password)

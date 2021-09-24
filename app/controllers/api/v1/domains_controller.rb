@@ -14,6 +14,7 @@ class Api::V1::DomainsController < ApplicationController
   def create
     @domain = current_user.domains.new(domain_params)
     if @domain.save
+      Domains::Manager.new.connect_domain(@domain.url)
       render json: @domain, status: :ok
     else
       render json: @domain.errors, status: :unprocessable_entity
@@ -21,8 +22,13 @@ class Api::V1::DomainsController < ApplicationController
   end
 
   def destroy
-    @domain = current_user.domains.find(params[:id]).destroy
-    render json: { notice: 'Domain was deleted' }, status: :ok
+    @domain = current_user.domains.find(params[:id])
+    if @domain.present?
+      Domains::Manager.new.remove_domain(@domain.url)
+      @domain = @domain.destroy
+      render json: { notice: I18n.t 'domains.was_deleted' }, status: :ok
+    end
+    render json: { notice: 'not found' }, status: :not_found
   end
 
   private

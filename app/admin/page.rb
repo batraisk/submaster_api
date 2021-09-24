@@ -68,6 +68,15 @@ ActiveAdmin.register Page do
           end
         end
       end
+      tab 'Logins' do
+        paginated_collection(resource.logins.order(created_at: :desc).page(params[:page]).per(15), download_links: false) do
+          table_for(collection, sortable: false) do
+             column :created_at
+            column :name
+          end
+
+        end
+      end
     end
   end
 end

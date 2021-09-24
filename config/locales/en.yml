@@ -35,9 +35,12 @@ en:
     find_place: You can find your username on your profile page
     get_access:  Get access
     account_not_found: Account not found
+    not_valid_nickname: Username not valid
     we_did_not_find: We did not find
     did_not_find: in subscriptions, but you can still subscribe to get access.
     cancel: Cancel
     subscribe_and_access: Subscribe & get access
     your_username: Your Instagram username
     checking: Checking
+  domains:
+    was_deleted: Domain was deleted
