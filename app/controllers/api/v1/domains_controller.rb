@@ -26,7 +26,7 @@ class Api::V1::DomainsController < ApplicationController
     if @domain.present?
       Domains::Manager.new.remove_domain(@domain.url)
       @domain = @domain.destroy
-      render json: { notice: I18n.t 'domains.was_deleted' }, status: :ok
+      render json: { notice: t('domains.was_deleted') }, status: :ok
     end
     render json: { notice: 'not found' }, status: :not_found
   end
