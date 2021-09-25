@@ -88,14 +88,20 @@
 </script>
 
 
-<!--<h1>{{welcome_title}}</h1>-->
-<!--<form action="/pages/{{url}}" method="POST">-->
-<!--  <input type="text" hidden id="csrf_token" name="csrf_token" value="{{csrf_token}}">-->
-<!--  <div class="input-control">-->
-<!--    <label for="name">-->
-<!--      <input type="text" id="name" name="name">-->
-<!--      никнейм-->
-<!--    </label>-->
-<!--  </div>-->
-<!--  <button type="submit" id="action-button">click</button>-->
-<!--</form>-->
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '<%= @page.facebook_pixel_id %>');
+  fbq('track', 'open enter login page');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+               src="https://www.facebook.com/tr?id=<%= @page.facebook_pixel_id %>&ev=PageView&noscript=1"
+  /></noscript>
+<!-- End Facebook Pixel Code -->
