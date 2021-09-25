@@ -34,7 +34,7 @@ class UserPromocode < ApplicationRecord
   def one_used_expected
     return true if promocode.nil?
     user_promocode = UserPromocode.where(user: user, promocode: promocode).first
-    errors.add(:code, 'used') if user_promocode.nil?
+    errors.add(:code, 'used') unless user_promocode.nil?
   end
 
 end
