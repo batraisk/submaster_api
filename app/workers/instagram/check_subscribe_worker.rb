@@ -5,7 +5,7 @@ class Instagram::CheckSubscribeWorker
   def perform(page_id, login_id, guest_id)
     page = Page.find(page_id)
     guest = Guest.find(guest_id)
-    login = Login.find(login_id)
+    login = page.logins.find(login_id)
     creds = InstagramCredential.find(InstagramCredential.pluck(:id).sample)
     user = page.user
     return if page.nil? or login.nil? or creds.nil? or guest.nil? or login.is_subscribed

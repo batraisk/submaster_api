@@ -102,6 +102,8 @@ goToInsta = (login) => {
   fetch(`/api/v1/pages/run_deferred_events?hashid=${value}&login=${login}`).then();
 
   const link = `https://www.instagram.com/${login}/`
+  const modal = document.getElementById("myModal");
+  modal.style.display = "hidden";
   window.open(link, '_blank').focus();
 }
 

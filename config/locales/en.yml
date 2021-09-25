@@ -42,5 +42,6 @@ en:
     subscribe_and_access: Subscribe & get access
     your_username: Your Instagram username
     checking: Checking
+    not_valid_nickname_desc: You probably entered a phone number or your email instead of a nickname. Your nickname is located at the top of your profile page
   domains:
     was_deleted: Domain was deleted

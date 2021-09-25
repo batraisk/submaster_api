@@ -26,6 +26,9 @@ module Statistics
       when 'year'
         @from = date.beginning_of_year
         @to = date.end_of_year
+      else
+        @from = date.beginning_of_day
+        @to = date.end_of_day
       end
     end
 
@@ -84,11 +87,11 @@ module Statistics
       data = if @params[:mode] == 'date'
                guests_scope
                  .group_by_hour('created_at').group('date(created_at)', 'status')
-                 .count.map {|date, count| {date: "#{date[0].strftime('%R')} - #{(date[0] + 1.hour).strftime('%R')}", status: date[1], count: count}}
+                 .count.map {|date, count| {date: "#{date[0].strftime('%R')} - #{(date[0] + 1.hour).strftime('%R')}", status: date[2], count: count}}
              else
                guests_scope
                  .group('date(created_at)', 'status')
-                 .count.map {|date, count| {date: date[0], status: date[1], count: count}}
+                 .count.map {|date, count| {date: date[0], status: date[2], count: count}}
              end
 
       result = {}
@@ -101,8 +104,10 @@ module Statistics
 
           if item[:status] == 'welcome_page'
             result[item[:date]] = 100 * temp_result[item[:date]].to_f / (temp_result[item[:date]] + item[:count]).to_f
+
           else
             result[item[:date]] = 100 * item[:count].to_f / (temp_result[item[:date]] + item[:count]).to_f
+
           end
 
         end

@@ -3,6 +3,7 @@
 # Table name: user_infos
 #
 #  id         :bigint           not null, primary key
+#  country    :string           default("RU")
 #  locale     :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

@@ -58,9 +58,13 @@ class User < ApplicationRecord
     true
   end
 
+  def subscription_price
+    PaymentConfig.instance.ru_price
+  end
+
   def pay_for_subscription(page, login)
     return unless can_pay_for_subscription?
-    purchases.create!({product: login, amount: price, page: page, login: login})
+    purchases.create!({product: login, amount: subscription_price, page: page})
   end
 
   private

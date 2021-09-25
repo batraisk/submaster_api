@@ -6,3 +6,5 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 AdminUser.create!(email: 'admin@submaster.com', password: 'password', password_confirmation: 'password')
+payment_config = PaymentConfig.instance
+payment_config.update(en_price: 3, payment_key: '', ru_price: 3, merchant_id: '')
