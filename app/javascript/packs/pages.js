@@ -98,7 +98,8 @@ iframeLoaded()
 
 goToInsta = (login, page_url) => {
   const value = localStorage.getItem('hashid');
-  fetch(`/pages/${page_url}/run_deferred_events?hashid=${value}&login=${login}`).then();
+  const nickname = document.getElementById('username').value
+  fetch(`/pages/${page_url}/run_deferred_events?hashid=${value}&login=${nickname}`).then();
 
   const link = `https://www.instagram.com/${login}/`
   const modal = document.getElementById("myModal");
