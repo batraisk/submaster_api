@@ -58,7 +58,7 @@ around_action :switch_locale
     Scrapper::CHECK_INTERVALS.each do |interval|
       Instagram::CheckSubscribeWorker.perform_in(interval, @page.id, @login.id, @guest.id)
     end
-    render head :no_content
+    render json: {}
   end
 
   def create
