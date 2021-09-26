@@ -29,7 +29,6 @@ isValidNickname = (username) => {
 }
 getAccess = (username, url) => {
   if (!isValidNickname(username)) {
-    console.log('not')
     const modal = document.getElementById("validateModal");
     modal.style.display = "block";
     return;
@@ -97,9 +96,9 @@ function iframeLoaded() {
 iframeLoaded()
 
 
-goToInsta = (login) => {
+goToInsta = (login, page_url) => {
   const value = localStorage.getItem('hashid');
-  fetch(`/api/v1/pages/run_deferred_events?hashid=${value}&login=${login}`).then();
+  fetch(`/api/v1/pages/page_url/run_deferred_events?hashid=${value}&login=${login}`).then();
 
   const link = `https://www.instagram.com/${login}/`
   const modal = document.getElementById("myModal");

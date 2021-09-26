@@ -37,7 +37,7 @@
         <p><%= I18n.t 'page.we_did_not_find' %> @<span id="modal-nickname"></span> <%= I18n.t 'page.did_not_find' %></p>
         <div class="actions-block">
           <button class="btn-small btn-default cancel"><%= I18n.t 'page.cancel' %></button>
-          <button onclick="goToInsta('<%= @page.instagram_login %>')" class="btn-small btn-primary"><%= I18n.t 'page.subscribe_and_access' %></button>
+          <button onclick="goToInsta('<%= @page.instagram_login %>', '<%= @page.url %>')" class="btn-small btn-primary"><%= I18n.t 'page.subscribe_and_access' %></button>
         </div>
       </div>
     </div>
