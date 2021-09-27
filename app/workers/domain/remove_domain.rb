@@ -2,9 +2,7 @@ class Domain::RemoveDomainWorker
   include Sidekiq::Worker
   sidekiq_options retry: false
 
-  def perform(domain_id)
-    @domain = Domain.find(domain_id)
-    return if @domain.nil?
-    Domains::Manager.new.remove_domain(@domain.url)
+  def perform(url)
+    Domains::Manager.new.remove_domain(url)
   end
 end

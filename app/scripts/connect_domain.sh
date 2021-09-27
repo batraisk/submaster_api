@@ -57,6 +57,16 @@ server {
 
 server {
 
+  listen 80;
+  listen [::]:80;
+
+  server_name _;
+    return 404;
+
+}
+
+server {
+
   server_name $domain www.$domain;
     listen 80;
     return 404; # managed by Certbot

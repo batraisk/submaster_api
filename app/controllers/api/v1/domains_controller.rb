@@ -26,7 +26,7 @@ class Api::V1::DomainsController < ApplicationController
     @domain = current_user.domains.find(params[:id])
     if @domain.present?
       # Domains::Manager.new.remove_domain(@domain.url)
-      Domain::RemoveDomainWorker.perform_async(@domain.id)
+      Domain::RemoveDomainWorker.perform_async(@domain.url)
       @domain = @domain.destroy
       render json: { notice: t('domains.was_deleted') }, status: :ok
     end
