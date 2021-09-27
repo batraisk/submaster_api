@@ -32,7 +32,9 @@ Rails.application.routes.draw do
         post :payment_link, on: :collection
         post :check, on: :collection
       end
-      resources :domains
+      resources :domains do
+        post :statuses, on: :collection
+      end
       resource :account
       resources :subscribe_pages do
         get :statistics

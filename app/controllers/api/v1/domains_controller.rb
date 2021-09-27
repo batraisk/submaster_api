@@ -1,5 +1,5 @@
 class Api::V1::DomainsController < ApplicationController
-  skip_before_action :verify_authenticity_token, :only => [:create, :destroy]
+  skip_before_action :verify_authenticity_token, :only => [:create, :destroy, :statuses]
 
   def index
     @user_domains = current_user.domains
@@ -14,7 +14,8 @@ class Api::V1::DomainsController < ApplicationController
   def create
     @domain = current_user.domains.new(domain_params)
     if @domain.save
-      Domains::Manager.new.connect_domain(@domain.url)
+      Domain::ConnectDomainWorker.perform_async(@domain.id)
+      # Domains::Manager.new.connect_domain(@domain.url)
       render json: @domain, status: :ok
     else
       render json: @domain.errors, status: :unprocessable_entity
@@ -24,11 +25,19 @@ class Api::V1::DomainsController < ApplicationController
   def destroy
     @domain = current_user.domains.find(params[:id])
     if @domain.present?
-      Domains::Manager.new.remove_domain(@domain.url)
+      # Domains::Manager.new.remove_domain(@domain.url)
+      Domain::RemoveDomainWorker.perform_async(@domain.id)
       @domain = @domain.destroy
       render json: { notice: t('domains.was_deleted') }, status: :ok
     end
     render json: { notice: 'not found' }, status: :not_found
+  end
+
+  def statuses
+    @domains = current_user.domains.where(id: params[:ids]).map do |domain|
+      {id: domain.id, status: domain.status}
+    end
+    render json: @domains
   end
 
   private

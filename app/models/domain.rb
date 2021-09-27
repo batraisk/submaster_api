@@ -21,4 +21,9 @@ class Domain < ApplicationRecord
   belongs_to :user
   has_many :pages
   validates :url, presence: true, uniqueness: true
+  before_create :set_def_status
+
+  def set_def_status
+    self.status = 'pending'
+  end
 end
