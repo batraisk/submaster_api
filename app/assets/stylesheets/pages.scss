@@ -44,6 +44,7 @@
     height: 100%;
     justify-content: center;
     flex-grow: 1;
+
     padding: 24px;
 
     h1 {
@@ -136,7 +137,63 @@
   };
 }
 
+.success-page {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 9;
+}
+
+.success-left, .success-right, .success-top, .success-bottom,
+.success-mobile-bottom, .success-mobile-top {
+  display: none;
+}
+
+@media only screen and (min-width: 1024px) {
+  .success-left, .success-right {
+    display: block;
+    width: 50%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+  }
+  .success-right {
+    background-position-y: bottom;
+    background-position-x: left;
+    right: 0;
+  }
+  .success-left {
+    background-position-y: top;
+    background-position-x: right;
+  }
+}
+
 @media only screen and (max-width: 1023px) {
+  .success-mobile-bottom, .success-mobile-top {
+    display: none;
+  }
+  .success-top, .success-bottom {
+    display: block;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+  }
+  .success-top {
+    background-position-y: bottom;
+    background-position-x: center;
+    height: 50%;
+    top: 0;
+
+  }
+  .success-bottom {
+    background-position-y: top;
+    background-position-x: center;
+    bottom: 0;
+    height: 65%;
+  }
+
   .template-container {
     align-items: flex-end;
     background-position-x: right;
@@ -159,6 +216,15 @@
 
   .page-container {
     &.success-page {
+      .success-left {
+        width: 50%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position-y: top;
+        background-position-x: left;
+        background-size: cover;
+        position: absolute;
+      }
       h1 {
         font-weight: 500;
         font-size: 52px;
@@ -171,6 +237,7 @@
       }
       button {
         width: 100%;
+        max-width: 468px;
       }
       flex-direction: row;
     }
@@ -185,13 +252,31 @@
       display: block;
       height: 100%;
       margin: 0 40px;
-      //margin-top: 50px;
-      //margin-bottom: 50px;
       width: 66px;
     }
   }
 }
 @media only screen and (max-width: 669px) {
+  .success-mobile-top, .success-mobile-bottom {
+    display: block;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+  }
+  .success-mobile-top {
+    background-position-y: bottom;
+    background-position-x: center;
+    height: 50%;
+    top: 0;
+
+  }
+  .success-mobile-bottom {
+    background-position-y: top;
+    background-position-x: center;
+    bottom: 0;
+    height: 65%;
+  }
   .page-container {
     &.success-page {
       flex-direction: column;

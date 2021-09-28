@@ -44,7 +44,7 @@
 #
 class Page < ApplicationRecord
   belongs_to :user
-  # belongs_to :domain
+  belongs_to :domain, optional: true
   before_save :generate_content
   has_one_attached :background
   # has_one_attached :profile_pic

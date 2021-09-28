@@ -18,7 +18,6 @@ class Api::V1::SubscribePagesController < ApplicationController
     if @page.background && params[:background] == '_destroy'
       @page.background.purge
     end
-    # byebug
     if @page.update(page_params)
       render json: @page, status: :ok
     else
@@ -72,11 +71,16 @@ class Api::V1::SubscribePagesController < ApplicationController
         :yandex_metrika,
         :domain_id,
         :facebook_pixel_id,
-        :status
+        :status,
+        :domain_id
       ]
       return params.permit(attributes) if params[:background] == '_destroy'
       attributes << :background
-      params.permit(attributes)
+      params.permit(attributes).tap do |domain|
+        if domain[:domain_id]
+          domain[:domain_id] = domain[:domain_id] === 0 ? nil : domain[:domain_id]
+        end
+      end
     end
 
     def filter_params

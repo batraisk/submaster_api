@@ -82,8 +82,7 @@ around_action :switch_locale
     @page = Page.find_by_url(params[:url])
     @login = @page.logins.find_by_name(params[:name])
     if @page.nil?
-      head :not_found if @login.nil?
-      return
+      render json: {}, status: :not_found if @login.nil?
     elsif @login.nil?
       render json: {access: false}, status: :ok
     else

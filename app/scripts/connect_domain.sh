@@ -27,46 +27,19 @@ cat > $NGINX_AVAILABLE_VHOSTS/$domain.conf <<EOF
 
 server {
   server_name $domain www.$domain;
-  root /home/deploy/submaster-front/current/dist;
+  root /home/deploy/submaster_api/current/public;
 
-  location / {
-    try_files \$uri \$uri/ /index.html;
-  }
-
-  location /assets/images {
-    expires 1M;
-    access_log off;
-    add_header Cache-Control "public";
-  }
-
-  location /admin/ {
-    proxy_pass http://localhost:3000;
-  }
-
-  location ~ ^/(api/v1/|rails/active_storage|api-docs|pages|admin|assets/active|packs|assets/application) {
-    root /home/deploy/submaster_api/current/public;
-
-    passenger_enabled on;
+  passenger_enabled on;
     passenger_app_env production;
-  }
 
+  location ~ ^.+\..+$ {
+    try_files \$uri =404;
+  }
 
   client_max_body_size 100m;
-
 }
 
 server {
-
-  listen 80;
-  listen [::]:80;
-
-  server_name _;
-    return 404;
-
-}
-
-server {
-
   server_name $domain www.$domain;
     listen 80;
     return 404; # managed by Certbot

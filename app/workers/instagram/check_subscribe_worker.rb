@@ -18,8 +18,7 @@ class Instagram::CheckSubscribeWorker
     login.status = 'subscribed'
     if login.save
       user.pay_for_subscription(page, login)
-      Facebook::Pixel.new(page, guest).call()
+      Facebook::Pixel.new(page, guest).call
     end
   end
-
 end

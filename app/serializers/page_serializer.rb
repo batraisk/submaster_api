@@ -53,7 +53,8 @@ class PageSerializer < ActiveModel::Serializer
              :timer_enable, :timer_text, :youtube,
              :timer_time, :welcome_button_text,
              :welcome_description, :welcome_title, :insta_avatar,
-             :yandex_metrika, :facebook_pixel_id, :status
+             :yandex_metrika, :facebook_pixel_id, :status,
+             :domain_id, :link_to_page
 
   def background
     return unless object.background.attached?
@@ -63,6 +64,16 @@ class PageSerializer < ActiveModel::Serializer
     #   attachment_id: object.background.id,
     #   path: url
     # }
+  end
+
+  def link_to_page
+    return "http://localhost:3000/pages/#{object.url}" if Rails.env.development?
+    return "https://#{object.domain.url}/pages/#{object.url}" if object.domain.present?
+    "https://submaster.pro/pages/#{object.url}"
+  end
+
+  def domain_id
+    object.domain_id || 0
   end
 
   def statistics

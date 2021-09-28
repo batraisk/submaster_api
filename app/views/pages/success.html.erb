@@ -1,13 +1,15 @@
+<div class="success-left" style="background-image: url(<%=asset_pack_path('media/images/success-left.svg') %>)"></div>
+<div class="success-top" style="background-image: url(<%=asset_pack_path('media/images/success-top.svg') %>)"></div>
+<div class="success-mobile-top" style="background-image: url(<%=asset_pack_path('media/images/success-mobile-top.svg') %>)"></div>
+
 <div class="page-container success-page" id="success-page">
 <!--<div class="page-container success-page hidden" id="success-page">-->
-  <div
-    class="fanfare mobile"
-    style="background: center url(<%=asset_pack_path('media/images/success.svg') %>); transform: scaleX(-1);"
-  ></div>
-  <img class="fanfare-horizontal" style="transform: scaleX(-1);" src="<%=asset_pack_path('media/images/success-horizontal.svg') %>" alt="">
-<!--  <img class="fanfare" src="<%#=asset_pack_path('media/images/success.svg') %>" alt="">-->
-<!--  <img class="fanfare" src="<%#=image_pack_tag 'media/images/success.svg' %>" alt="">-->
-  <img class="fanfare" <%= image_pack_tag 'media/images/success.svg' %>
+<!--  <div-->
+<!--    class="fanfare mobile"-->
+<!--    style="background: center url(<%#=asset_pack_path('media/images/success.svg') %>); transform: scaleX(-1);"-->
+<!--  ></div>-->
+<!--  <img class="fanfare-horizontal" style="transform: scaleX(-1);" src="<%#=asset_pack_path('media/images/success-horizontal.svg') %>" alt="">-->
+<!--  <img class="fanfare" <%#= image_pack_tag 'media/images/success.svg' %>-->
 
   <div class="content-container">
     <div><%= image_pack_tag('media/images/check-circle.svg') %></div>
@@ -16,13 +18,16 @@
     <p><%= @page.success_description %></p>
     <button onclick="getBonus()" class="btn-primary"><%= @page.success_button_text %></button>
   </div>
-  <div
-    class="fanfare mobile"
-    style="background: center url(<%=asset_pack_path('media/images/success.svg') %>);"
-  ></div>
-  <img class="fanfare" style="transform: scaleY(-1);" src="<%=asset_pack_path('media/images/success.svg') %>" alt="">
-  <img class="fanfare-horizontal" src="<%=asset_pack_path('media/images/success-horizontal.svg') %>" alt="">
+<!--  <div-->
+<!--    class="fanfare mobile"-->
+<!--    style="background: center url(<%#=asset_pack_path('media/images/success.svg') %>);"-->
+<!--  ></div>-->
+<!--  <img class="fanfare" style="transform: scaleY(-1);" src="<%#=asset_pack_path('media/images/success.svg') %>" alt="">-->
+<!--  <img class="fanfare-horizontal" src="<%#=asset_pack_path('media/images/success-horizontal.svg') %>" alt="">-->
 </div>
+<div class="success-right" style="background-image: url(<%=asset_pack_path('media/images/success-right.svg') %>)"></div>
+<div class="success-bottom" style="background-image: url(<%=asset_pack_path('media/images/success-bottom.svg') %>)"></div>
+<div class="success-mobile-bottom" style="background-image: url(<%=asset_pack_path('media/images/success-mobile-bottom.svg') %>)"></div>
 
 <%= javascript_pack_tag 'success_page' %>
 <script type="text/javascript" charset="utf-8">
