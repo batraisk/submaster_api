@@ -30,6 +30,10 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    errors:
+      messages:
+        taken: "has already been taken"
   page:
     enter_username: Enter your Instagram username to get access
     find_place: You can find your username on your profile page

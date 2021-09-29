@@ -39,7 +39,7 @@ class User < ApplicationRecord
   has_many :domains, dependent: :delete_all
   has_many :payments, dependent: :delete_all
   has_many :pages, dependent: :delete_all
-  has_one :user_info
+  has_one :user_info, dependent: :destroy
   has_many :user_promocodes
   has_many :promocodes, through: :user_promocodes
   has_many :purchases

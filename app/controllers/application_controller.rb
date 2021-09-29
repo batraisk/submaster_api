@@ -1,15 +1,17 @@
 class ApplicationController < ActionController::Base
-  # around_action :switch_locale
+  around_action :switch_locale
   before_action :check_host, :get_time_zone
 
   def switch_locale(&action)
-    # locale = request.env['HTTP_ACCEPT_LANGUAGE']&.slice(0,2)&.to_sym || I18n.default_locale
+    return if params[:controller].split("/").first.eql? 'admin'
+    locale = request.env['HTTP_ACCEPT_LANGUAGE']&.slice(0,2)&.to_sym || I18n.default_locale
     # if params[:controller].split("/").first.eql? 'admin'
     #   locale = :en
-    # elsif current_user
-    #   locale = current_user.user_info.locale&.to_sym || :en
-    # end
-    # I18n.with_locale(locale, &action)
+    if current_user
+      locale = current_user.user_info.locale&.to_sym || :en
+    end
+    # byebug
+    I18n.with_locale(locale, &action)
   end
 
   def get_time_zone

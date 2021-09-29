@@ -1,4 +1,8 @@
 ru:
+  activerecord:
+    errors:
+      messages:
+        taken: "Уже занято"
   page:
     enter_username: Для получения доступа введите ваш никнейм в Instagram
     find_place: Вы можете найти ваш никнейм на вашей странице

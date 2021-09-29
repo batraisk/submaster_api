@@ -49,8 +49,8 @@ class Page < ApplicationRecord
   has_one_attached :background
   # has_one_attached :profile_pic
   has_and_belongs_to_many :logins
-  has_many :utm_tags, dependent: :destroy
-  has_many :guests, dependent: :destroy
+  has_many :utm_tags, dependent: :delete_all
+  has_many :guests, dependent: :delete_all
   has_many :purchases
 
   COLORS = {
