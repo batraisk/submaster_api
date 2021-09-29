@@ -23,6 +23,6 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Purchase < ApplicationRecord
-  belongs_to :product, polymorphic: true
+  belongs_to :product, polymorphic: true, optional: true
   belongs_to :page, optional: true
 end

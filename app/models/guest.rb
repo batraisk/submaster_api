@@ -22,6 +22,6 @@ class Guest < ApplicationRecord
   include Hashid::Rails
 
   belongs_to :page
-  has_one :utm_tag
+  has_one :utm_tag, dependent: :destroy
 
 end
