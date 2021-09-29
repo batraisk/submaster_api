@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   # around_action :switch_locale
-  before_action :check_host
+  before_action :check_host, :get_time_zone
 
   def switch_locale(&action)
     # locale = request.env['HTTP_ACCEPT_LANGUAGE']&.slice(0,2)&.to_sym || I18n.default_locale
@@ -10,6 +10,15 @@ class ApplicationController < ActionController::Base
     #   locale = current_user.user_info.locale&.to_sym || :en
     # end
     # I18n.with_locale(locale, &action)
+  end
+
+  def get_time_zone
+    time_zone = if Rails.env.test? || Rails.env.development?
+                  Geocoder.search("31.23.19.197").first
+                else
+                  request.location
+                end.data["timezone"]
+    Groupdate.time_zone =  ActiveSupport::TimeZone::MAPPING.key(time_zone) || "UTC"
   end
 
   def check_host

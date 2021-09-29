@@ -28,8 +28,8 @@ class Api::V1::PaymentsController < ApplicationController
     if @payment.present?
       @payment.update(payment_params)
     end
-    url = 'http://localhost:4200/#/balance'
-    url = 'https://www.submaster.pro/#/balance' if Rails.env.production? == true
+    url = 'http://localhost:4200/balance'
+    url = 'https://www.submaster.pro/balance' if Rails.env.production? == true
     redirect_to url
   end
 

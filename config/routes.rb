@@ -36,6 +36,7 @@ Rails.application.routes.draw do
         post :statuses, on: :collection
       end
       resource :account
+      resource :application_settings, only: :show
       resources :subscribe_pages do
         get :statistics
         resources :utm_tags

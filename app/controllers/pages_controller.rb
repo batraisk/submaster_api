@@ -33,6 +33,7 @@ around_action :switch_locale
       utm.page = @page
     end
     @guest.save!
+    ApiConversions::PixelWorker.perform_async(@page, @guest, 'visit page')
     @content = @page.welcome_content
     @form_authenticity_token = form_authenticity_token
   end

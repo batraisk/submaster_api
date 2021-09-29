@@ -1,11 +1,11 @@
 class Api::V1::SubscribePagesController < ApplicationController
-  skip_before_action :verify_authenticity_token, :only => [:create, :update, :destroy, :get_bonus]
+  skip_before_action :verify_authenticity_token, :only => [:create, :update, :destroy]
 
   def index
     @user_pages = current_user.pages.order(created_at: :desc)
 
     render json: @user_pages, status: :ok
-    end
+  end
 
   def show
     @user_page = current_user.pages.find(params[:id])
@@ -18,6 +18,9 @@ class Api::V1::SubscribePagesController < ApplicationController
     if @page.background && params[:background] == '_destroy'
       @page.background.purge
     end
+    creds = InstagramCredential.find(InstagramCredential.pluck(:id).sample)
+    scrapper = Instagram::ScrapperService.new(creds.login, creds.password)
+    @page.insta_avatar = scrapper.get_avatar_blob(@page.instagram_login)
     if @page.update(page_params)
       render json: @page, status: :ok
     else
@@ -25,8 +28,20 @@ class Api::V1::SubscribePagesController < ApplicationController
     end
   end
 
+  def insta_info
+    creds = InstagramCredential.find(InstagramCredential.pluck(:id).sample)
+    scrapper = Instagram::ScrapperService.new(creds.login, creds.password)
+    render json: scrapper.get_user_info(params[:nickname])
+  end
+
   def create
     @page = current_user.pages.new(page_params)
+
+    creds = InstagramCredential.find(InstagramCredential.pluck(:id).sample)
+    scrapper = Instagram::ScrapperService.new(creds.login, creds.password)
+
+    @page.insta_avatar = scrapper.get_avatar_blob(instagram_login)
+
     if @page.save
       render json: @page, status: :ok
     else
@@ -78,7 +93,7 @@ class Api::V1::SubscribePagesController < ApplicationController
       attributes << :background
       params.permit(attributes).tap do |domain|
         if domain[:domain_id]
-          domain[:domain_id] = domain[:domain_id] === 0 ? nil : domain[:domain_id]
+          domain[:domain_id] = domain[:domain_id].to_s == 0.to_s ? nil : domain[:domain_id]
         end
       end
     end

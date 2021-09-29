@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'mechanize'
+require 'net/http'
 
 class Instagram::ScrapperService
   def initialize(username = 'batraisk', password = '18052005ziga!')
@@ -74,8 +75,12 @@ class Instagram::ScrapperService
   end
 
   def get_user_id(username)
-    user_info = get_user_info(username)
-    user_info['graphql']['user']['id']
+    begin
+      user_info = get_user_info(username)
+      user_info['graphql']['user']['id']
+    rescue Exception => e
+      return nil
+    end
   end
 
   def get_user_followers(id, max_id = nil)
@@ -90,6 +95,24 @@ class Instagram::ScrapperService
     request = @agent.get("https://www.instagram.com/graphql/query/", params)
 
     JSON.parse(request.body)
+  end
+
+
+  def get_avatar_blob(username)
+    begin
+      user_info = get_user_info(username)
+      avatar_url = user_info['graphql']['user']['profile_pic_url']
+      uri = URI(avatar_url)
+      req = Net::HTTP::Get.new(uri)
+      req['Content-type']='image/png'
+      req['cross-origin-resource-policy']='cross-origin'
+      res = Net::HTTP.start(uri.hostname,
+                            uri.port,
+                            :use_ssl => uri.scheme == 'https') {|http| http.request(req) }
+      return Base64.encode64(res.body)
+    rescue Exception => e
+      return nil
+    end
   end
 
   def user_is_follower(username, follower)

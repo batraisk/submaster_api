@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_25_135244) do
+ActiveRecord::Schema.define(version: 2021_09_28_205451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,16 @@ ActiveRecord::Schema.define(version: 2021_09_25_135244) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "application_settings", force: :cascade do |t|
+    t.integer "singleton_guard"
+    t.string "application_host"
+    t.string "support_link"
+    t.string "privacy_policy"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["singleton_guard"], name: "index_application_settings_on_singleton_guard", unique: true
   end
 
   create_table "domains", force: :cascade do |t|

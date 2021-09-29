@@ -1,5 +1,6 @@
 <% @content.gsub! '{{image}}', rails_blob_path(@page.background, only_path: true) if @page.background.attached?%>
 <% @content.gsub! '{{youtube}}', '' unless @page.youtube.present?%>
+<% @content.gsub! '{{privacy_policy}}', ApplicationSetting.instance.privacy_policy %>
 <% @content.gsub! 'dark-layout-hidden', '' if @page.theme == 'dark' && !@page.youtube.present? %>
 <%= @content.html_safe %>
 <%= csrf_meta_tags %>
@@ -11,20 +12,36 @@
   runTimer('<%= @page.timer_time %>')
   <% end %>
 </script>
-<!-- Facebook Pixel Code -->
-<script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '<%= @page.facebook_pixel_id %>');
-  fbq('track', 'open welcome page');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-               src="https://www.facebook.com/tr?id=<%= @page.facebook_pixel_id %>&ev=PageView&noscript=1"
-  /></noscript>
-<!-- End Facebook Pixel Code -->
+<% if @page.facebook_pixel_id %>
+  <!-- Facebook Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '<%= @page.facebook_pixel_id %>');
+    fbq('track', 'visit welcome page');
+  </script>
+  <!-- End Facebook Pixel Code -->
+<% end %>
+<% if @page.yandex_metrika %>
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript" >
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(<%= @page.yandex_metrika %>, "init", {
+      clickmap:true,
+      trackLinks:true,
+      accurateTrackBounce:true,
+      webvisor:true
+    });
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/<%= @page.yandex_metrika %>" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
+<% end %>

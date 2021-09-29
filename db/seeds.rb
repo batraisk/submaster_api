@@ -8,3 +8,6 @@
 AdminUser.create!(email: 'admin@submaster.com', password: 'password', password_confirmation: 'password')
 payment_config = PaymentConfig.instance
 payment_config.update(en_price: 3, payment_key: '', ru_price: 3, merchant_id: '')
+application_settings = ApplicationSetting.instance
+application_settings.update(application_host: '18.190.83.26', support_link: '', privacy_policy: '')
+
