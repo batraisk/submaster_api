@@ -5,12 +5,9 @@ class ApplicationController < ActionController::Base
   def switch_locale(&action)
     return if params[:controller].split("/").first.eql? 'admin'
     locale = request.env['HTTP_ACCEPT_LANGUAGE']&.slice(0,2)&.to_sym || I18n.default_locale
-    # if params[:controller].split("/").first.eql? 'admin'
-    #   locale = :en
     if current_user
       locale = current_user.user_info.locale&.to_sym || :en
     end
-    # byebug
     I18n.with_locale(locale, &action)
   end
 

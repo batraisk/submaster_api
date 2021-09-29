@@ -1,6 +1,6 @@
 <% @content.gsub! '{{image}}', rails_blob_path(@page.background, only_path: true) if @page.background.attached?%>
 <% @content.gsub! '{{youtube}}', '' unless @page.youtube.present?%>
-<% @content.gsub! '{{privacy_policy}}', ApplicationSetting.instance.privacy_policy %>
+<% @content.gsub! '{{privacy_policy}}', ApplicationSetting.instance?.privacy_policy || '' %>
 <% @content.gsub! 'dark-layout-hidden', '' if @page.theme == 'dark' && !@page.youtube.present? %>
 <%= @content.html_safe %>
 <%= csrf_meta_tags %>

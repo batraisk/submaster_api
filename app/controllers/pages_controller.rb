@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   skip_before_action :verify_authenticity_token, :only => [:create]
-around_action :switch_locale
+  around_action :switch_locale
 
   def switch_locale(&action)
     locale = request.env['HTTP_ACCEPT_LANGUAGE']&.slice(0,2)&.to_sym || I18n.default_locale

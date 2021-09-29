@@ -18,9 +18,9 @@ class Api::V1::SubscribePagesController < ApplicationController
     if @page.background && params[:background] == '_destroy'
       @page.background.purge
     end
-    creds = InstagramCredential.find(InstagramCredential.pluck(:id).sample)
-    scrapper = Instagram::ScrapperService.new(creds.login, creds.password)
-    @page.insta_avatar = scrapper.get_avatar_blob(@page.instagram_login)
+    # creds = InstagramCredential.find(InstagramCredential.pluck(:id).sample)
+    # scrapper = Instagram::ScrapperService.new(creds.login, creds.password)
+    # @page.insta_avatar = scrapper.get_avatar_blob(@page.instagram_login)
     if @page.update(page_params)
       render json: @page, status: :ok
     else
