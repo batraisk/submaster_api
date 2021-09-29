@@ -40,7 +40,7 @@ class Api::V1::SubscribePagesController < ApplicationController
     creds = InstagramCredential.find(InstagramCredential.pluck(:id).sample)
     scrapper = Instagram::ScrapperService.new(creds.login, creds.password)
 
-    @page.insta_avatar = scrapper.get_avatar_blob(instagram_login)
+    @page.insta_avatar = scrapper.get_avatar_blob(params[:instagram_login])
 
     if @page.save
       render json: @page, status: :ok
@@ -89,8 +89,8 @@ class Api::V1::SubscribePagesController < ApplicationController
         :status,
         :domain_id
       ]
-      return params.permit(attributes) if params[:background] == '_destroy'
-      attributes << :background
+      # return params.permit(attributes) if params[:background] == '_destroy'
+      attributes << :background unless params[:background] == '_destroy'
       params.permit(attributes).tap do |domain|
         if domain[:domain_id]
           domain[:domain_id] = domain[:domain_id].to_s == 0.to_s ? nil : domain[:domain_id]
