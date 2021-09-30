@@ -29,9 +29,8 @@ class ApplicationController < ActionController::Base
 
     return if hostname.downcase.eql?('submaster.pro')
     render json: 'page not found', :status => 404 unless params[:url].present?
-    page = Page.find_by_url(params[:url]).domain
-    domain = page.domain.find_by_url(hostname)
-    return if domain.present?
+    domain = Page.find_by_url(params[:url]).domain
+    return if domain.present? && domain.url == hostname
     render json: 'page not found', :status => 404
   end
 

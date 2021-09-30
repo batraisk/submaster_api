@@ -34,7 +34,7 @@ class PagesController < ApplicationController
       utm.page = @page
     end
     @guest.save!
-    ApiConversions::PixelWorker.perform_async(@page, @guest, 'visit page')
+    ApiConversions::PixelWorker.perform_async(@page.id, @guest.id, 'visit page')
     @content = @page.welcome_content
     @form_authenticity_token = form_authenticity_token
   end
