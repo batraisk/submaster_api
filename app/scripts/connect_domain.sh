@@ -53,6 +53,6 @@ chown -R $WEB_USER:$WEB_USER $WEB_DIR/$username
 
 # Enable site by creating symbolic link
 # ln -s $NGINX_AVAILABLE_VHOSTS/$1 $NGINX_ENABLED_VHOSTS/$1
-sudo certbot --nginx -n --agree-tos -m batraisk@gmail.com -d www.$domain
+sudo certbot --nginx -n --agree-tos -m info@submaster.pro -d www.$domain -d $domain
 service nginx restart
 ok "Site Created for $domain"

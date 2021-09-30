@@ -34,6 +34,7 @@ ActiveAdmin.register User do
           row :email
           row :confirmed_at
           row :created_at
+          row('Balance') { |b| b.balance }
         end
       end
       tab 'Pages' do
@@ -41,6 +42,32 @@ ActiveAdmin.register User do
           column :page_name do |page|
             link_to page.page_name, admin_page_path(page)
           end
+        end
+      end
+      tab 'Payments' do
+        table_for user.payments do
+          column :amount
+          column :card_bin
+          column :card_type
+          column :currency
+          column :fee
+          column :masked_card
+          column :order_status
+          column :order_time
+          column :reversal_amount
+          column :sender_account
+          column :sender_cell_phone
+          column :sender_email
+          column :settlement_amount
+          column :signature
+          column :created_at
+        end
+      end
+      tab 'Promocodes' do
+        table_for user.promocodes do
+          column :code
+          column :created_at
+          column :amount
         end
       end
     end
