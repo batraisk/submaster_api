@@ -12,7 +12,7 @@
   runTimer('<%= @page.timer_time %>')
   <% end %>
 </script>
-<% if @page.facebook_pixel_id %>
+<% if @page.facebook_pixel_id.present? %>
   <!-- Facebook Pixel Code -->
   <script>
     !function(f,b,e,v,n,t,s)
@@ -28,7 +28,7 @@
   </script>
   <!-- End Facebook Pixel Code -->
 <% end %>
-<% if @page.yandex_metrika %>
+<% if @page.yandex_metrika.present? %>
   <!-- Yandex.Metrika counter -->
   <script type="text/javascript" >
     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};

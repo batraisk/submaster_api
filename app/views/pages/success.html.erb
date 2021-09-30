@@ -33,7 +33,7 @@
 <script type="text/javascript" charset="utf-8">
   updateGuestStatus('success')
 </script>
-<% if @page.facebook_pixel_id %>
+<% if @page.facebook_pixel_id.present? %>
   <!-- Facebook Pixel Code -->
   <script>
     !function(f,b,e,v,n,t,s)
