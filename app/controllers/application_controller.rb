@@ -27,11 +27,11 @@ class ApplicationController < ActionController::Base
     return unless Rails.env.production?
     hostname = request.host.sub('www.', '')
     return if hostname.downcase.eql?('submaster.pro')
-    render :status => 404 unless params[:url].present?
+    render json: {}, :status => 404 unless params[:url].present?
     domain = Domain.find_by_url(hostname)
     Page.find_by_url(params[:url]).domain
     return if domain.present? && domain.url == hostname
-    render :status => 404
+    render json: {}, :status => 404
   end
 
   def render_json_response(resource)
