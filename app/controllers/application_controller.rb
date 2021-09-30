@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  around_action :switch_locale
-  before_action :check_host, :get_time_zone
+  # around_action :switch_locale
+  # before_action :check_host, :get_time_zone
 
   def switch_locale(&action)
     return if params[:controller].split("/").first.eql? 'admin'
