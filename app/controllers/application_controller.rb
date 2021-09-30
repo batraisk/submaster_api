@@ -23,11 +23,14 @@ class ApplicationController < ActionController::Base
 
   def check_host
     return if params[:controller].split("/").first.eql? 'admin'
+
     return unless Rails.env.production?
     hostname = request.host.sub('www.', '')
     return if hostname.downcase.eql?('submaster.pro')
+    render :status => 404 unless params[:url].present?
     domain = Domain.find_by_url(hostname)
-    return if domain.present?
+    Page.find_by_url(params[:url]).domain
+    return if domain.present? && domain.url == hostname
     render :status => 404
   end
 
