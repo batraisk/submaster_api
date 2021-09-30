@@ -54,7 +54,7 @@ class User < ApplicationRecord
 
   def can_pay_for_subscription?
     price = PaymentConfig.instance.ru_price || 0
-    return false if balance < price
+    return false if balance * 100 < price
     true
   end
 
