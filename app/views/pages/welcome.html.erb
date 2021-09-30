@@ -25,6 +25,7 @@
       'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '<%= @page.facebook_pixel_id %>');
     fbq('track', 'visit welcome page');
+    fbq('trackCustom', 'visit welcome page');
   </script>
   <!-- End Facebook Pixel Code -->
 <% end %>

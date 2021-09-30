@@ -45,7 +45,8 @@
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '<%= @page.facebook_pixel_id %>');
-    fbq('track', 'open success page');
+    fbq('track', 'visit success page');
+    fbq('trackCustom', 'visit success page');
   </script>
   <noscript><img height="1" width="1" style="display:none"
                  src="https://www.facebook.com/tr?id=<%= @page.facebook_pixel_id %>&ev=PageView&noscript=1"
