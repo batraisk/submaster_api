@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  # around_action :switch_locale
-  # before_action :check_host, :get_time_zone
+  around_action :switch_locale
+  before_action :check_host, :get_time_zone
 
   def switch_locale(&action)
     return if params[:controller].split("/").first.eql? 'admin'
@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_time_zone
+    return if params[:controller].split("/").first.eql? 'admin'
     time_zone = if Rails.env.test? || Rails.env.development?
                   Geocoder.search("31.23.19.197").first
                 else
@@ -21,6 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_host
+    return if params[:controller].split("/").first.eql? 'admin'
     return unless Rails.env.production?
     hostname = request.host.sub('www.', '')
     return if hostname.downcase.eql?('submaster.pro')
