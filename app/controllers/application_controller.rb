@@ -22,7 +22,6 @@ class ApplicationController < ActionController::Base
   end
 
   def check_host
-    render json: 'page not found', :status => 404
     return if params[:controller].split("/").first.eql? 'admin'
 
     return unless Rails.env.production?
