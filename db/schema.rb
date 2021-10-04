@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_28_205451) do
+ActiveRecord::Schema.define(version: 2021_10_03_132151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,37 @@ ActiveRecord::Schema.define(version: 2021_09_28_205451) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "admin_managed_resources", force: :cascade do |t|
+    t.string "class_name", null: false
+    t.string "action", null: false
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["class_name", "action", "name"], name: "admin_managed_resources_index", unique: true
+  end
+
+  create_table "admin_permissions", force: :cascade do |t|
+    t.integer "admin_managed_resource_id", null: false
+    t.integer "admin_role_id", null: false
+    t.integer "state", limit: 2, default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_managed_resource_id", "admin_role_id"], name: "admin_permissions_index", unique: true
+  end
+
+  create_table "admin_roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "admin_user_admin_roles", force: :cascade do |t|
+    t.integer "admin_user_id", null: false
+    t.integer "admin_role_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "admin_users", force: :cascade do |t|

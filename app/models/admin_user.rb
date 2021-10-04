@@ -21,4 +21,30 @@ class AdminUser < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, 
          :recoverable, :rememberable, :validatable
+  has_many :admin_user_admin_roles
+  has_many :admin_roles, through: :admin_user_admin_roles
+  accepts_nested_attributes_for :admin_roles, allow_destroy: true
+
+  def available_actions(class_name)
+    AdminManagedResource.all
+                    .includes(:admin_roles)
+                    .where(admin_roles: {id: self.admin_roles})
+                    .where(class_name: class_name).map{|a| a[:action]}
+    # actions += [:index, :show] if permissions.include?('read')
+    # actions += [:destroy] if permissions.include?('destroy')
+    # actions += [:new, :update, :create] if permissions.include?('update')
+    # actions
+  end
+  # def available_actions(class_name)
+  #   actions = []
+  #   permissions = AdminManagedResource.all
+  #                   .includes(:admin_roles)
+  #                   .where(admin_roles: {id: self.admin_roles})
+  #                   .where(class_name: class_name).map{|a| a[:action]}
+  #   actions += [:index, :show] if permissions.include?('read')
+  #   actions += [:destroy] if permissions.include?('destroy')
+  #   actions += [:new, :update, :create] if permissions.include?('update')
+  #   actions
+  # end
+
 end

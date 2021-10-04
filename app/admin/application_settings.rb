@@ -1,10 +1,14 @@
 ActiveAdmin.register ApplicationSetting do
-  menu :label => "Application Settings"
+  # actions = current_admin_user.available_actions('ApplicationSetting')
+  menu :label => "Application Settings"#, :if => proc{ false }
+  # actions :all
   actions :all, :except => [:new, :destroy]
+  # actions []
   permit_params :application_host, :support_link, :privacy_policy
 
+
   index do
-    column :application_host
+    column :application_host if false
     column :support_link
     column :privacy_policy
     actions

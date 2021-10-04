@@ -26,8 +26,8 @@ ActiveAdmin.register Promocode do
       #         label: 'Type',
       #         collection: [["Currency", :currency, { checked: 'checked' }], ["Period", :time_period]],
       #         value: :add
-      f.input :begins_at, as: :date_time_picker
-      f.input :ends_at, as: :date_time_picker
+      f.input :begins_at, as: :date_time_picker, input_html: { autocomplete: :off }
+      f.input :ends_at, as: :date_time_picker, input_html: { autocomplete: :off }
       # f.input :duration, label: 'Duration in days'
       f.input :amount,
               as: :number,
