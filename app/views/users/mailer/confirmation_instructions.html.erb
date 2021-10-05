@@ -1,6 +1,7 @@
-<p>Welcome <%= @email %>!</p>
+<% base_url = Rails.env.development? ? 'http://localhost:4200' : 'https://submaster.pro' %>
+<p><%= t 'auth.welcome' %> <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p><%= t 'auth.confirm_account' %>:</p>
 
 <!--<p><%#= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token).split('/').take(3).join('/') + "/#/auth/login?confirmation_token=#{@token}" %></p>-->
-<p><%= link_to 'Confirm my account', "https://submaster.pro/auth/login?confirmation_token=#{@token}" %></p>
+<p><%= link_to t('auth.confirm'), "#{base_url}/auth/login?confirmation_token=#{@token}" %></p>

@@ -12,7 +12,7 @@ module SubmasterApi
     config.load_defaults 6.1
     I18n.available_locales = [:en, :ru]
     config.active_job.queue_adapter = :sidekiq
-    config.autoloader = :classic
+    # config.autoloader = :classic
     # config.active_record.default_timezone = :utc
     config.time_zone = 'Europe/Moscow'
     # Configuration for the application, engines, and railties goes here.

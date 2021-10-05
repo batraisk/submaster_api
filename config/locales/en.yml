@@ -30,10 +30,19 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  auth:
+    confirm_account: You can confirm your account email through the link below
+    welcome: Welcome
+    confirm: Confirm my account
   activerecord:
     errors:
       messages:
-        taken: "has already been taken"
+        taken: "Has already been taken"
+    models:
+      referral_invitation:
+        attributes:
+          recipient_email:
+            invalid: Enter valid Email
   page:
     enter_username: Enter your Instagram username to get access
     find_place: You can find your username on your profile page
@@ -49,3 +58,9 @@ en:
     not_valid_nickname_desc: You probably entered a phone number or your email instead of a nickname. Your nickname is located at the top of your profile page
   domains:
     was_deleted: Domain was deleted
+  mailer:
+    invite_subject: Invite to Submaster
+    user_invites: "User %{user} invites you to join the system SubMaster."
+    to_accept_invite: "To accept the invitation follow the link:"
+    good_day: Good day!
+    invitation_link: Invitation link

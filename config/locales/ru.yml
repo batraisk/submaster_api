@@ -1,8 +1,17 @@
 ru:
+  auth:
+    confirm_account: Вы можете подтвердить свой аккаунт перейдя по ссылке
+    welcome: Добро пожаловать
+    confirm: Подтвердить аккаунт
   activerecord:
     errors:
       messages:
         taken: "Уже занято"
+      models:
+        referral_invitation:
+          attributes:
+            recipient_email:
+              invalid: введите корректный Email
   page:
     enter_username: Для получения доступа введите ваш никнейм в Instagram
     find_place: Вы можете найти ваш никнейм на вашей странице
@@ -18,3 +27,9 @@ ru:
     not_valid_nickname_desc: Вероятно, вы ввели номер телефона или свою почту вместо никнейма. Ваш никнейм расположен вверху страницы профиля
   domains:
     was_deleted: Домен удален
+  mailer:
+    invite_subject: Приглашение в Submaster
+    user_invites: "Пользователь %{user} приглашает вас присоединиться к системе  SubMaster."
+    to_accept_invite: "Чтобы принять приглашение перейдете по ссылке:"
+    good_day: Добрый день!
+    invitation_link: Ссылка-приглашение

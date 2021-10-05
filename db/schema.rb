@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_03_132151) do
+ActiveRecord::Schema.define(version: 2021_10_04_113434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -231,6 +231,8 @@ ActiveRecord::Schema.define(version: 2021_10_03_132151) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "ru_price"
     t.integer "en_price"
+    t.integer "referral_bonus_en", default: 0
+    t.integer "referral_bonus_ru", default: 0
     t.index ["singleton_guard"], name: "index_payment_configs_on_singleton_guard", unique: true
   end
 
@@ -281,6 +283,19 @@ ActiveRecord::Schema.define(version: 2021_10_03_132151) do
     t.index ["page_id"], name: "index_purchases_on_page_id"
     t.index ["product_type", "product_id"], name: "index_purchases_on_product"
     t.index ["user_id"], name: "index_purchases_on_user_id"
+  end
+
+  create_table "referral_invitations", force: :cascade do |t|
+    t.string "recipient_email"
+    t.string "status", default: "created", null: false
+    t.integer "bonus"
+    t.string "access_token"
+    t.bigint "sender_id", null: false
+    t.bigint "recipient_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipient_id"], name: "index_referral_invitations_on_recipient_id"
+    t.index ["sender_id"], name: "index_referral_invitations_on_sender_id"
   end
 
   create_table "user_infos", force: :cascade do |t|
@@ -346,6 +361,8 @@ ActiveRecord::Schema.define(version: 2021_10_03_132151) do
   add_foreign_key "pages", "users"
   add_foreign_key "payments", "users"
   add_foreign_key "purchases", "users"
+  add_foreign_key "referral_invitations", "users", column: "recipient_id"
+  add_foreign_key "referral_invitations", "users", column: "sender_id"
   add_foreign_key "user_infos", "users"
   add_foreign_key "user_promocodes", "promocodes"
   add_foreign_key "user_promocodes", "users"

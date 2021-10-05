@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users, only: :show
+      resources :referral_invitations, only: [:show, :create]
       resources :statistics, only: :index do
         get :set_status, on: :collection
       end

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<h1><%= I18n.t 'mailer.good_day' %></h1>
+<p>
+  <%= I18n.t 'mailer.user_invites', user: @referral_invitation.sender.email %><br>
+</p>
+<p>
+  <%= I18n.t 'mailer.to_accept_invite' %> <a href="<%= @url %>"><%=I18n.t 'mailer.invitation_link' %></a>.
+</p>
+</body>
+</html>

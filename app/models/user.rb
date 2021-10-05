@@ -43,17 +43,20 @@ class User < ApplicationRecord
   has_many :user_promocodes
   has_many :promocodes, through: :user_promocodes
   has_many :purchases
+  has_many :sent_invitations, foreign_key: "sender_id", class_name: "ReferralInvitation"
+  has_one :accepted_invitation, foreign_key: "recipient_id", class_name: "ReferralInvitation"
 
   after_create :create_info
 
   def balance
     (payments.where(order_status: "approved").sum(:amount) +
+      sent_invitations.confirmed.sum(:bonus) +
       promocodes.sum(:amount) * 100 -
       purchases.sum(:amount)).to_f / 100
   end
 
   def can_pay_for_subscription?
-    price = PaymentConfig.instance.ru_price || 0
+    price = self.user_info.country.eql?('RU') ? PaymentConfig.instance.ru_price || 0 : PaymentConfig.instance.en_price || 0
     return false if balance * 100 < price
     true
   end
@@ -65,6 +68,10 @@ class User < ApplicationRecord
   def pay_for_subscription(page, login)
     return unless can_pay_for_subscription?
     purchases.create!({product: login, amount: subscription_price, page: page})
+  end
+
+  def invitations_bonus
+    self.user_info.country.eql?('RU') ? PaymentConfig.instance.referral_bonus_ru : PaymentConfig.instance.referral_bonus_en
   end
 
   private
