@@ -4,9 +4,11 @@ class ApplicationController < ActionController::Base
 
 
   def switch_locale(&action)
+    # byebug
     # return if params[:controller].split("/").first.eql? 'admin'
     locale = request.env['HTTP_ACCEPT_LANGUAGE']&.slice(0,2)&.to_sym || I18n.default_locale
     # locale = :ru
+    # locale = :en
     if current_user
       locale = current_user.user_info.locale&.to_sym || :ru
     end
