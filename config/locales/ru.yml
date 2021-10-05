@@ -1,13 +1,114 @@
 ru:
+  actions:
+    read: смотреть
+    destroy: удалить
+    create: создать
+    update: обновить
+  attribute:
+    rights: Права
+    promocode:
+      code: Код
+      amount: Сумма
+      amount_in_rub: Сумма в рублях
+      begins_at: Действует с
+      ends_at: Действует до
+    application_setting:
+      application_host: Адрес сервера
+      support_link: Ссылка на поддержку
+      online_course_link: Ссылка на онлайн курс
+  subject:
+    application_settings: Настройки приложения
   auth:
     confirm_account: Вы можете подтвердить свой аккаунт перейдя по ссылке
     welcome: Добро пожаловать
     confirm: Подтвердить аккаунт
   activerecord:
+    models:
+      application_setting:
+        one: Настройки приложения
+        their: Настройки приложения
+        other: Настройки приложения
+        many: Настройки приложения
+      admin_user:
+        one: Администратор
+        their: Администраторы
+        other: Администраторы
+        few: Администраторов
+        many: Администраторы
+      instagram_credential:
+        one: Аккаунты для парсера
+        their: Аккаунты для парсера
+        other: Аккаунты для парсера
+        many: Аккаунты для парсера
+        few: Аккаунтов
+      proxy_server:
+        one: Прокси сервер
+        their: Прокси серверы
+        other: Прокси серверы
+        many: Прокси серверы
+        few: Прокси серверы
+      login:
+        one: Никнейм
+        their: Никнеймы
+        other: Никнеймы
+        many: Никнеймы
+        few: Никнеймов
+      comment:
+        one: Комментарий
+      permission:
+        one: Права
+      dashboard:
+        one: Панель управления
+      page:
+        one: Подписная страница
+        their: Страницы
+        other: Страницы
+        few: Страниц
+        many: Страницы
+      user:
+        one: Пользователь
+        their: Пользователи
+        other: Пользователи
+        few: Пользователей
+        many: Пользователи
+      role:
+        one: Роль
+        their: Роли
+        other: Роли
+        few: Ролей
+        many: Роли
+      promocode:
+        one: Промокод
+        their: Промокоды
+        other: Промокоды
+        few: Промокодов
+        many: Промокоды
+      payment:
+        one: Платеж
+        their: Платежи
+        other: Платежи
+        few: Платежей
+        many: Платежи
+      payment_config:
+        one: Платежая система
+        their: Платежая система
+        other: Платежая система
+        many: Платежая система
+        few: Платежых систем
+      faq:
+        one: FAQ
+        their: FAQ
+        other: FAQ
+        few: FAQ
+        many: FAQ
+      attributes:
+        role:
+          name: Название
+        user:
+          email: почта
     errors:
       messages:
         taken: "Уже занято"
-      models:
         referral_invitation:
           attributes:
             recipient_email:

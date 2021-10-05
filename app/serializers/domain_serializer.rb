@@ -3,6 +3,7 @@
 # Table name: domains
 #
 #  id         :bigint           not null, primary key
+#  meta_tag   :string           default("")
 #  status     :string
 #  url        :string
 #  created_at :datetime         not null

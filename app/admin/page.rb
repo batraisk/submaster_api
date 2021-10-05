@@ -24,6 +24,7 @@ ActiveAdmin.register Page do
         attributes_table do
           row :id
           row :download_link
+          row :privacy_policy
           row :facebook_server_side_token
           row :instagram_login
           row :out_of_stock_description

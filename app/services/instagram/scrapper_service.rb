@@ -3,10 +3,12 @@ require 'mechanize'
 require 'net/http'
 
 class Instagram::ScrapperService
-  def initialize(username = 'batraisk', password = '18052005ziga!')
+  def initialize(username, password)
     @username = username
     @password = password
+    proxy = ProxyServer.find(ProxyServer.pluck(:id).sample) if ProxyServer.last.present?
     @agent = Mechanize.new { |agent|
+      agent.set_proxy(proxy.ip, proxy.port) if proxy
       agent.user_agent_alias = 'Mac Safari'
       # agent.user_agent_alias = Scrapper::STORIES_UA
     }

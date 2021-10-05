@@ -50,7 +50,7 @@ class Api::V1::DomainsController < ApplicationController
     end
 
     def domain_params
-      params.permit(:url)
+      params.permit(:url, :meta_tag)
 
     end
 end

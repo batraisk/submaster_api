@@ -30,19 +30,42 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  actions:
+    read: read
+    destroy: destroy
+    create: create
+    update: update
+  attribute:
+    rights: Rights
+    promocode:
+      code: Сode
+      amount: Amount
+      amount_in_rub: Amount in rubls
+      begins_at: Begins at
+      ends_at: Ends at
+    application_setting:
+      application_host: application host
+      support_link: support link
+      online_course_link: online course link
+  subject:
+    application_settings: Application Settings
   auth:
     confirm_account: You can confirm your account email through the link below
     welcome: Welcome
     confirm: Confirm my account
   activerecord:
+#    models:
+#      application_setting:
+#        one: Application settings
+#        their: Application settings
+#        other: Application settings
     errors:
       messages:
         taken: "Has already been taken"
-    models:
-      referral_invitation:
-        attributes:
-          recipient_email:
-            invalid: Enter valid Email
+        referral_invitation:
+          attributes:
+            recipient_email:
+              invalid: Enter valid Email
   page:
     enter_username: Enter your Instagram username to get access
     find_place: You can find your username on your profile page

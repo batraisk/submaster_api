@@ -46,7 +46,7 @@ class User < ApplicationRecord
   has_many :sent_invitations, foreign_key: "sender_id", class_name: "ReferralInvitation"
   has_one :accepted_invitation, foreign_key: "recipient_id", class_name: "ReferralInvitation"
 
-  after_create :create_info
+  after_create :create_info, :apply_promocode
 
   def balance
     (payments.where(order_status: "approved").sum(:amount) +
@@ -78,5 +78,11 @@ class User < ApplicationRecord
 
     def create_info
       self.create_user_info!
+    end
+
+    def apply_promocode
+      @promocode = Promocode.find_by_code('welcome')
+      user_promocode = UserPromocode.new({user: self, promocode: @promocode})
+      user_promocode.save! if user_promocode.valid?
     end
 end

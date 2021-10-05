@@ -3,6 +3,7 @@
 # Table name: domains
 #
 #  id         :bigint           not null, primary key
+#  meta_tag   :string           default("")
 #  status     :string
 #  url        :string
 #  created_at :datetime         not null
@@ -22,7 +23,7 @@ class Domain < ApplicationRecord
   belongs_to :user
   has_many :pages
   validates :url, presence: true, uniqueness: true
-  validate :connect_expected
+  validate :connect_expected, on: :create
   before_create :set_def_status
 
   def set_def_status

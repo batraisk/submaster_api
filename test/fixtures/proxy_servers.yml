@@ -1,22 +1,12 @@
 # == Schema Information
 #
-# Table name: domains
+# Table name: proxy_servers
 #
 #  id         :bigint           not null, primary key
-#  meta_tag   :string           default("")
-#  status     :string
-#  url        :string
+#  ip         :string
+#  port       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :bigint
-#
-# Indexes
-#
-#  index_domains_on_user_id  (user_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (user_id => users.id)
 #
 
 # This model initially had no columns defined. If you add columns to the

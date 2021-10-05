@@ -11,6 +11,7 @@ module SubmasterApi
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
     I18n.available_locales = [:en, :ru]
+    # I18n.available_locales = [:en]
     config.active_job.queue_adapter = :sidekiq
     # config.autoloader = :classic
     # config.active_record.default_timezone = :utc

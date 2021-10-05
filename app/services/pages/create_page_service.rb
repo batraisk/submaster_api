@@ -13,6 +13,7 @@ class Pages::CreatePageService
        timer_text
        url
        welcome_button_text
+       privacy_policy
        theme].each { |value| set_param("{{#{value}}}", page[value]) }
     unless page.background.nil?
       set_param '{{back}}', 'style="background-image: url({{image}})"'

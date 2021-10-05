@@ -12,7 +12,7 @@ ActiveAdmin.register Login do
   # filter :created_at
   filter :name
   filter :status
-  filter :pages_page_name, :as => :select, :collection => Page.all.collect {|o| [o.page_name]}, label: 'Page'
+  # filter :pages_page_name, :as => :select, :collection => Page.all.collect {|o| [o.page_name]}, label: 'Page'
 
   #
   # form do |f|

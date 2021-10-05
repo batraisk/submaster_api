@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
 
   def switch_locale(&action)
     # return if params[:controller].split("/").first.eql? 'admin'
-    # locale = request.env['HTTP_ACCEPT_LANGUAGE']&.slice(0,2)&.to_sym || I18n.default_locale
-    locale = :ru
+    locale = request.env['HTTP_ACCEPT_LANGUAGE']&.slice(0,2)&.to_sym || I18n.default_locale
+    # locale = :ru
     if current_user
       locale = current_user.user_info.locale&.to_sym || :ru
     end
@@ -31,10 +31,11 @@ class ApplicationController < ActionController::Base
     hostname = request.host.sub('www.', '')
 
     return if hostname.downcase.eql?('submaster.pro')
-    render json: 'page not found', :status => 404 unless params[:url].present?
-    domain = Page.find_by_url(params[:url]).domain
-    return if domain.present? && domain.url == hostname
-    render json: 'page not found', :status => 404
+    @domain = Domain.find_by(url: hostname)
+    render_404 unless params[:url].present?
+    @domain = Page.find_by_url(params[:url]).domain
+    return if @domain.present? && @domain.url == hostname
+    render_404
   end
 
   def render_json_response(resource)
@@ -42,6 +43,18 @@ class ApplicationController < ActionController::Base
       render json: resource
     else
       render json: resource.errors, status: :bad_request
+    end
+  end
+
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
+  def render_404
+    respond_to do |format|
+      format.html { render "404", :layout => false, :status => :ok }
+      format.xml  { head :not_found }
+      format.any  { head :not_found }
     end
   end
 end

@@ -2,13 +2,14 @@
 #
 # Table name: application_settings
 #
-#  id               :bigint           not null, primary key
-#  application_host :string
-#  privacy_policy   :string
-#  singleton_guard  :integer
-#  support_link     :string
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  id                 :bigint           not null, primary key
+#  application_host   :string
+#  online_course_link :string           default("")
+#  privacy_policy     :string
+#  singleton_guard    :integer
+#  support_link       :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
 #
 # Indexes
 #

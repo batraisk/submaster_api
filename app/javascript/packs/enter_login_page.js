@@ -1,3 +1,10 @@
+guardHashId = () => {
+  if (!localStorage.getItem('hashid')) {
+    const url = window.location.pathname.match('pages\/(.*?)\/enter_login')[1];
+    window.location.href = `/pages/${url}/welcome`;
+  }
+}
+
 checkAccess = (url) => {
   const urlSearchParams = new URLSearchParams(window.location.search);
   const params = Object.fromEntries(urlSearchParams.entries());
@@ -22,3 +29,5 @@ checkAccess = (url) => {
       unSetChecking();
     }));
 }
+
+guardHashId()

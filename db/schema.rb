@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_04_113434) do
+ActiveRecord::Schema.define(version: 2021_10_05_191043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 2021_10_04_113434) do
     t.string "privacy_policy"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "online_course_link", default: ""
     t.index ["singleton_guard"], name: "index_application_settings_on_singleton_guard", unique: true
   end
 
@@ -126,6 +127,7 @@ ActiveRecord::Schema.define(version: 2021_10_04_113434) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "status"
+    t.string "meta_tag", default: ""
     t.index ["user_id"], name: "index_domains_on_user_id"
   end
 
@@ -216,9 +218,10 @@ ActiveRecord::Schema.define(version: 2021_10_04_113434) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "welcome_content"
-    t.string "status", default: "inactive"
+    t.string "status", default: "active"
     t.string "youtube"
     t.string "insta_avatar"
+    t.string "privacy_policy", default: ""
     t.index ["domain_id"], name: "index_pages_on_domain_id"
     t.index ["user_id"], name: "index_pages_on_user_id"
   end
@@ -267,6 +270,13 @@ ActiveRecord::Schema.define(version: 2021_10_04_113434) do
     t.datetime "ends_at"
     t.integer "duration"
     t.integer "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "proxy_servers", force: :cascade do |t|
+    t.string "ip"
+    t.string "port"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

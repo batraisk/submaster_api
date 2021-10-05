@@ -1,6 +1,7 @@
 # Additional translations at https://github.com/heartcombo/devise/wiki/I18n
-
-en:
+ru:
+  subject:
+    application_settings: Настройки приложения
   devise:
     confirmations:
       confirmed: "Ваш аккаунт успешно подтвержден"

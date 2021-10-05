@@ -1,10 +1,12 @@
 ActiveAdmin.register Faq, as: "FAQ" do
   menu :label => "FAQ"
   permit_params :question, :answer
+  before_filter :skip_sidebar!, :only => :index
 
   index do
     selectable_column
     id_column
+    column :answer
     column :question
     actions
   end
