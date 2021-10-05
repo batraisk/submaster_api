@@ -50,6 +50,7 @@ gem 'sidekiq', '~>6.2.1'
 gem 'geocoder'
 gem 'active_admin_role'
 gem 'rails-i18n'
+gem 'capistrano-sidekiq', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

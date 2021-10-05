@@ -18,7 +18,6 @@ ActiveAdmin::ManageableResource.call.each do |manageable_resource|
 end
 admin_role = AdminRole.create!(name: 'Super Admin')
 AdminUserAdminRole.create!(admin_role: admin_role, admin_user: admin)
-resources = AdminManagedResource.all
-resources.each do |resource|
-  @admin_permission = AdminPermission!.create(admin_managed_resource: resource, admin_role: admin_role)
+AdminManagedResource.all.each do |resource|
+  @admin_permission = AdminPermission.create!(admin_managed_resource: resource, admin_role: admin_role)
 end
