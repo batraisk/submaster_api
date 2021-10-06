@@ -40,9 +40,9 @@ class User < ApplicationRecord
   has_many :payments, dependent: :delete_all
   has_many :pages, dependent: :delete_all
   has_one :user_info, dependent: :destroy
-  has_many :user_promocodes
-  has_many :promocodes, through: :user_promocodes
-  has_many :purchases
+  has_many :user_promocodes, dependent: :nullify
+  has_many :promocodes, through: :user_promocodes, dependent: :nullify
+  has_many :purchases, dependent: :nullify
   has_many :sent_invitations, foreign_key: "sender_id", class_name: "ReferralInvitation"
   has_one :accepted_invitation, foreign_key: "recipient_id", class_name: "ReferralInvitation"
 

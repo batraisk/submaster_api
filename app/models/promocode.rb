@@ -15,7 +15,7 @@
 class Promocode < ApplicationRecord
   extend Enumerize
   enumerize :kind, in: [:currency, :time_period]
-  has_many :user_promocodes
+  has_many :user_promocodes, dependent: :nullify
   has_many :users, through: :user_promocodes
   validates :code, presence: true, uniqueness: true
 end
