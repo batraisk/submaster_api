@@ -63,5 +63,7 @@ Rails.application.routes.draw do
   get "/pages/*url/out_of_stock", :controller => 'pages', :action => 'out_of_stock'
   get "/pages/*url/get_bonus", :controller => 'pages', :action => 'get_bonus'
   get "/pages/*url", :controller => 'pages', :action => 'show'
+  get "/pages/not_found_page", :controller => 'pages', :action => 'not_found_page'
+  get "/404", :controller => 'pages', :action => 'not_found_page'
   post "/pages/*url", :controller => 'pages', :action => 'create'
 end

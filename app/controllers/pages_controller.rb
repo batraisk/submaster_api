@@ -39,6 +39,15 @@ class PagesController < ApplicationController
     @form_authenticity_token = form_authenticity_token
   end
 
+  def not_found_page
+    return unless Rails.env.production?
+    hostname = request.host.sub('www.', '')
+
+    return if hostname.downcase.eql?('submaster.pro')
+    @domain = Domain.find_by(url: hostname)
+    render_404
+  end
+
   def out_of_stock
     @page = Page.find_by_url(params[:url])
   end

@@ -33,8 +33,9 @@ class ApplicationController < ActionController::Base
 
     return if hostname.downcase.eql?('submaster.pro')
     @domain = Domain.find_by(url: hostname)
-    render_404 unless params[:url].present?
-    @domain = Page.find_by_url(params[:url]).domain
+    render_404 and return unless params[:url].present?
+    @page = Page.find_by_url(params[:url])
+    @domain = @page.domain if @page.present?
     return if @domain.present? && @domain.url == hostname
     render_404
   end

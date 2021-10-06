@@ -14,7 +14,7 @@ class Api::V1::DomainsController < ApplicationController
   def create
     @domain = current_user.domains.new(domain_params)
     if @domain.save
-      Domain::ConnectDomainWorker.perform_async(@domain.id)
+      Domain::ConnectDomainWorker.perform_async(@domain.id) if Rails.env.production?
       render json: @domain, status: :ok
     else
       render json: @domain.errors, status: :unprocessable_entity
@@ -24,9 +24,13 @@ class Api::V1::DomainsController < ApplicationController
   def destroy
     @domain = current_user.domains.find(params[:id])
     if @domain.present?
-      Domain::RemoveDomainWorker.perform_async(@domain.url)
-      @domain = @domain.destroy
-      render json: { notice: t('domains.was_deleted') }, status: :ok
+      if @domain.pages.present?
+        render json: { notice: 'pages exist' }, status: :not_found
+      else
+        Domain::RemoveDomainWorker.perform_async(@domain.url) if Rails.env.production?
+        @domain = @domain.destroy
+        render json: { notice: t('domains.was_deleted') }, status: :ok
+      end
     else
       render json: { notice: 'not found' }, status: :not_found
     end

@@ -44,7 +44,7 @@ class User < ApplicationRecord
   has_many :promocodes, through: :user_promocodes, dependent: :nullify
   has_many :purchases, dependent: :destroy
   has_many :sent_invitations, foreign_key: "sender_id", class_name: "ReferralInvitation"
-  has_one :accepted_invitation, foreign_key: "recipient_id", class_name: "ReferralInvitation"
+  has_one :accepted_invitation, foreign_key: "recipient_id", class_name: "ReferralInvitation", dependent: :nullify
 
   after_create :create_info, :apply_promocode
 
