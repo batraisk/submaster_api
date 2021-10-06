@@ -55,7 +55,7 @@ class PageSerializer < ActiveModel::Serializer
              :timer_time, :welcome_button_text,
              :welcome_description, :welcome_title, :insta_avatar,
              :yandex_metrika, :facebook_pixel_id, :status,
-             :domain_id, :link_to_page
+             :domain_id, :link_to_page, :privacy_policy
 
   def background
     return unless object.background.attached?
