@@ -87,6 +87,7 @@ class Api::V1::SubscribePagesController < ApplicationController
         :domain_id,
         :facebook_pixel_id,
         :status,
+        :privacy_policy,
         :domain_id
       ]
       # return params.permit(attributes) if params[:background] == '_destroy'
