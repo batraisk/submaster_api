@@ -41,7 +41,7 @@ module Statistics
     end
 
     def subscribers
-      logins_scope = @scope.joins(:logins).where('logins.created_at BETWEEN ? AND ?', @from, @to)
+      logins_scope = @scope.joins(:logins).where('logins.created_at BETWEEN ? AND ?', @from, @to).where(logins: {status: 'subscribed'})
       data = if @params[:mode] == 'date'
                logins_scope.group_by_hour('logins.created_at')
                  .count(:id).map { |date, count| {date: "#{date.strftime('%R')} - #{(date + 1.hour).strftime('%R')}", count: count} }
