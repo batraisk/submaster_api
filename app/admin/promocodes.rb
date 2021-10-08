@@ -1,6 +1,13 @@
 ActiveAdmin.register Promocode do
   permit_params :code, :kind, :begins_at, :ends_at, :duration, :amount
 
+  controller do
+    def destroy
+      @promocode = Promocode.find(params[:id])
+      @promocode.users.present? ? @promocode.discard : @promocode.destroy
+      redirect_to :admin_promocodes
+    end
+  end
   index do
     selectable_column
     id_column

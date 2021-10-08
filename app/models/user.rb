@@ -51,7 +51,7 @@ class User < ApplicationRecord
   def balance
     (payments.where(order_status: "approved").sum(:amount) +
       sent_invitations.confirmed.sum(:bonus) +
-      promocodes.sum(:amount) * 100 -
+      promocodes.unscoped.sum(:amount) * 100 -
       purchases.sum(:amount)).to_f / 100
   end
 
