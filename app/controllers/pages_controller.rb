@@ -115,6 +115,9 @@ class PagesController < ApplicationController
         @page.user.pay_for_subscription(@page, @login)
         @login.status = 'subscribed'
         @login.save
+      elsif !is_follow and was_subscribed
+        @login.status = 'not_subscribed'
+        @login.save
       end
     else
       @login = @page.logins.create({name: params[:name]})
