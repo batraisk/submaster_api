@@ -32,12 +32,14 @@ class Api::V1::SubscribePagesController < ApplicationController
     old_page = Page.find(params[:id])
     new_page = Page.new(old_page.attributes.merge({url: "#{old_page[:url]}-new", id: nil}))
     if new_page.save
-      old_page.background.blob.open do |tempfile|
-        new_page.background.attach({
-                                   io: tempfile,
-                                   filename: old_page.background.blob.filename,
-                                   content_type: old_page.background.blob.content_type
-                                 })
+      if old_page.background.present?
+        old_page.background.blob.open do |tempfile|
+          new_page.background.attach({
+                                     io: tempfile,
+                                     filename: old_page.background.blob.filename,
+                                     content_type: old_page.background.blob.content_type
+                                   })
+        end
       end
       render json: new_page, status: :ok
     else
