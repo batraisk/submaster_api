@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       resource :application_settings, only: :show
       resources :subscribe_pages do
         get :statistics
+        get :copy, on: :member
         resources :utm_tags
         resources :logins do
           get :report, on: :collection

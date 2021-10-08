@@ -66,6 +66,7 @@ class PagesController < ApplicationController
     @page = Page.find_by_url(params[:url])
     @login = @page.logins.find_by_name(params[:login])
     @guest = Guest.find(params[:hashid])
+    # byebug
     Scrapper::CHECK_INTERVALS.each do |interval|
       Instagram::CheckSubscribeWorker.perform_in(interval, @page.id, @login.id, @guest.id)
     end
@@ -118,15 +119,6 @@ class PagesController < ApplicationController
     else
       @login = @page.logins.create({name: params[:name]})
     end
-    # @login = @page.logins.find_or_initialize_by({name: params[:name]})
-    #
-    # was_subscribed = @login.is_subscribed
-    # @login.pages << @page
-    # @login.status = is_follow ? 'subscribed' : 'not_subscribed'
-    # @login.save
-    # if is_follow and !was_subscribed
-    #   @page.user.pay_for_subscription(@page, @login)
-    # end
     render json: {is_follow: is_follow}, status: :ok
   end
 

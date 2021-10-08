@@ -41,5 +41,5 @@ class Scrapper < ActiveRecord::Base
 
   LATEST_STAMPS_USER_SECTION = 'users'
 
-  CHECK_INTERVALS = [5.minutes, 30.minutes, 1.hour].freeze
+  CHECK_INTERVALS = [1.minute, 5.minutes, 30.minutes, 1.hour].freeze
 end

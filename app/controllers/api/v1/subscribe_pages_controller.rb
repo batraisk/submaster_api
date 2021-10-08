@@ -28,6 +28,23 @@ class Api::V1::SubscribePagesController < ApplicationController
     end
   end
 
+  def copy
+    old_page = Page.find(params[:id])
+    new_page = Page.new(old_page.attributes.merge({url: "#{old_page[:url]}-new", id: nil}))
+    if new_page.save
+      old_page.background.blob.open do |tempfile|
+        new_page.background.attach({
+                                   io: tempfile,
+                                   filename: old_page.background.blob.filename,
+                                   content_type: old_page.background.blob.content_type
+                                 })
+      end
+      render json: new_page, status: :ok
+    else
+      render json: new_page.errors, status: :unprocessable_entity
+    end
+  end
+
   def insta_info
     creds = InstagramCredential.find(InstagramCredential.pluck(:id).sample)
     scrapper = Instagram::ScrapperService.new(creds.login, creds.password)
